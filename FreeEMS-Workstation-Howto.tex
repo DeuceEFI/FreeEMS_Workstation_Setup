@@ -1,6 +1,8 @@
 \documentclass[12pt,notitlepage,onecolumn,oneside,openany,draft]{memoir}
+\usepackage{color}
 \usepackage{amsmath}
-\textwidth=7.0in
+\usepackage{hyperref}
+\textwidth=6.5in
 \textheight=9.5in
 \topmargin=0in
 \headheight=0in
@@ -15,48 +17,47 @@
 
 \begin{center}
 \textbf{\textsf{This document assumes you are starting with a blank hard drive.}} \newline
-\textbf{\textsf{ie: NO OPERATING SYSTEM.}} \newline
+\textbf{\textsf{ie: \textcolor{red}{NO OPERATING SYSTEM}.}} \newline
 \newline
 \textbf{\textsf{Make sure you start with Step A and do not skip any steps.}} \newline
-\textbf{\textsf{They are in this order for a reason!}} \newline
+\textbf{\textsf{\textcolor{red}{They are in this order for a reason!}}} \newline
 \end{center}
 \newline
 \textsf{The purpose of this document is to describe how to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows 7 and either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot) Linux for the average computer user.  The author assumes that the user has installed Windows 7 at least one or more times as instructions for the exact process of installing Windows 7 will not be shown.} \newline
 \newline
 \textsf{Please read through the ENTIRE document before beginning the installation process to make sure you fully understand each step of the process.  The author is not responsible for any actions resulting from you the user following the instruction contained in this HowTo, this is a free world with no strings attached and YOU are responsible for YOUR actions.} \newline
 \newline
-\textsf{To quote Morphius from the movie "The Matrix": "I am only your guide, you must make the decision to take the red pill or blue pill..."  So if you want to take the "red pill" be my guest and follow along.} \newline
+\textsf{To quote Morpheus from the movie "The Matrix": "This is your last chance. After this, there is no turning back. You take the blue pill - the story ends, you wake up in your bed and believe whatever you want to believe. You take the red pill - you stay in Wonderland and I show you how deep the rabbit-hole goes." \newline
 \newline
-\textbf{\chapter{Step 1:  Install Windows 7}}
+I am only your guide, you must make the decision to take the red pill or blue pill...  So if you want to take the "red pill" be my guest and follow along.} \newline
+\newline
+\chapter{\textsf{Step 1:  Install Windows 7}}}}
 \begin{enumerate}
-\item Install Windows 7 on half of the HDD space by creating an ~500 Gb partition during the Windows 7 installation.
+\item \textsf{Install Windows 7 on half of the HDD space by creating an ~500 Gb partition during the Windows 7 installation.}
 \textsf{This can be either Windows 7 32bit or Windows 7 64bit.  I won't go into detail of how to install Windows 7, if you aren't familiar with the install process try http://www.google.com.  After Windows 7 has been installed and updated, continue to the next step.}
 
-\item Download and install CodeWarrior for HCS12(X) Microcontrollers (Classic) IDE: \newline
-\textsf{http://cache.freescale.com/lgfiles/devsuites/HC12/CW\_HC12\_v5.1\_SPECIAL.exe \newline 
-?fpsp=1\&WT\_TYPE=IDE\%20-\%20Debug,\%20Compile\%20and\%20Build\%20Tools \newline 
-\&WT\_VENDOR=FREESCALE\&WT\_FILE\_FORMAT=exe\&WT\_ASSET=Downloads \newline
-\&sr=3} \newline
+\item \textsf{Download and install CodeWarrior for HCS12(X) Microcontrollers (Classic) IDE :} \newline
+\url{http://cache.freescale.com/lgfiles/devsuites/HC12/CW_HC12_v5.1_SPECIAL.exe?fpsp=1&WT_TYPE=IDE%20-%20Debug,%20Compile%20and%20Build%20Tools&WT_VENDOR=FREESCALE&WT_FILE_FORMAT=exe&WT_ASSET=Downloads&sr=3}\newline
 \newline
 \textsf{We need to install CodeWarrior so that we can load the Serial Monitor program onto the Freescale mc9s12xdp512 microprocessor.  We really aren't interested in the CodeWarrior IDE as a development platform, but we need the HiWave Debugger to flash the Serial Monitor program onto the blank MCU and it is included in the CodeWarrior download and installation process.}
 
-\item Next you need to download PE Micro's free Unsecure-12 utility for the HCS12(X) MCUs in case you get the Freescale MCU stuck in a Secured state. You can download it here after you register for a free account: \newline
-\textsf{https://www.pemicro.com/login.cfm?from\_url=/downloads/download\_file.cfm?download\_id=16}
+\item \textsf{Download PE Micro's free Unsecure-12 utility for the HCS12(X) MCUs in case you get the Freescale MCU stuck in a Secured state. You can download it here after you register for a free account:} \newline
+\url{https://www.pemicro.com/login.cfm?from\_url=/downloads/download_file.cfm?download_id=16}
 
-\item If you are going to use a TBDML device with the HiWave debugger then you can clone my github repository which contains the complete information and the Windows 32-bit driver that works with WinXP, Vista and Windows 7. \textbf{NOTE: NEED TO TEST 64BIT OS with 32BIT DRIVER.}
-\newline Here is a link to my repository: \newline
-\textsf{https://github.com/DeuceEFI/TBDML-12f-GPL}
+\item \textsf{If you are going to use a TBDML device with the HiWave debugger then you can clone my github repository which contains the complete information and the Windows 32-bit driver that works with WinXP, Vista and Windows 7. \textbf{NOTE: NEED TO TEST 64BIT OS with 32BIT DRIVER.}
+\newline Here is a link to my repository:} \newline
+\url{https://github.com/DeuceEFI/TBDML-12f-GPL}
 
-\item \textbf{I need to add instructions here on how to setup Unsecure-12 in HiWave debugger to actually perform the unsecure task.}
+\item \textsf{\textbf{I need to add instructions here on how to setup Unsecure-12 in HiWave debugger to actually perform the unsecure task.}
 Search for and create a shortcut on your Desktop for hiwave.exe, then open the shortcut you just created.  
-Next click on TBDML
+Next click on TBDML}
 
-\item Once you are done with all the Windows 7 updates and rebooting proceed to Step B on the next page.
+\item \textsf{Once you are done with all the Windows 7 updates and rebooting proceed to Step B on the next page.}
 \end{enumerate}
 
-\chapter{Download and create boot media for either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot).} 
-\newline 
-You have a couple of options here, you can go the route of  Method #1: download a .iso file and make a CD to boot from or you can just follow Method #2 and use unetbootin to make a bootable USB “Thumb” drive.
+\chapter{\textsf{Step 2: Download and create boot media}} 
+\textsf{Download and create the appropriate boot media for either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot).
+You have a couple of options here, you can go the route of  Method #1: download a .iso file and make a CD to boot from or you can just follow Method #2 and use unetbootin to make a bootable USB “Thumb” drive.}
 \newline
 \begin{enumerate}
 \item Download a disk image “.iso” file of your Linux distribution of choice, here are a few links:\newline
