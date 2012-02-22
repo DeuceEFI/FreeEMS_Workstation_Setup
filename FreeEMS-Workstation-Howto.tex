@@ -1,4 +1,4 @@
-\documentclass[12pt,notitlepage,onecolumn,oneside,draft]{memoir}
+\documentclass[12pt,notitlepage,onecolumn,oneside,openany,draft]{memoir}
 \usepackage{amsmath}
 \textwidth=7.0in
 \textheight=9.5in
@@ -7,23 +7,26 @@
 \headsep=0in
 \oddsidemargin=0in
 \evensidemargin=0in
-\title{FreeEMS Workstation HowTo}
-\author{\copyright Andy Goss}
-\date{02/21/2012}
+\title{\textsf{FreeEMS Workstation HowTo}}
+\author{\textsf{Andy Goss}}
+\date{\textsf{02/21/2012}}
 \begin{document}
 \maketitle
 
 \begin{center}
-\textbf{This document assumes you are starting with a blank hard drive.} \newline
-\textbf{ie: NO OPERATING SYSTEM.} \newline
+\textbf{\textsf{This document assumes you are starting with a blank hard drive.}} \newline
+\textbf{\textsf{ie: NO OPERATING SYSTEM.}} \newline
 \newline
-\textbf{Make sure you start with Step A and do not skip any steps.} \newline
-\textbf{They are in this order for a reason!} \newline
-\newline
-\textbf{How to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows 7} \newline
-\textbf{and either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot):} \newline
-
+\textbf{\textsf{Make sure you start with Step A and do not skip any steps.}} \newline
+\textbf{\textsf{They are in this order for a reason!}} \newline
 \end{center}
+\newline
+\textsf{The purpose of this document is to describe how to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows 7 and either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot) Linux for the average computer user.  The author assumes that the user has installed Windows 7 at least one or more times as instructions for the exact process of installing Windows 7 will not be shown.} \newline
+\newline
+\textsf{Please read through the ENTIRE document before beginning the installation process to make sure you fully understand each step of the process.  The author is not responsible for any actions resulting from you the user following the instruction contained in this HowTo, this is a free world with no strings attached and YOU are responsible for YOUR actions.} \newline
+\newline
+\textsf{To quote Morphius from the movie "The Matrix": "I am only your guide, you must make the decision to take the red pill or blue pill..."  So if you want to take the "red pill" be my guest and follow along.} \newline
+\newline
 \textbf{\chapter{Step 1:  Install Windows 7}}
 \begin{enumerate}
 \item Install Windows 7 on half of the HDD space by creating an ~500 Gb partition during the Windows 7 installation.
@@ -40,9 +43,11 @@
 \item Next you need to download PE Micro's free Unsecure-12 utility for the HCS12(X) MCUs in case you get the Freescale MCU stuck in a Secured state. You can download it here after you register for a free account: \newline
 \textsf{https://www.pemicro.com/login.cfm?from\_url=/downloads/download\_file.cfm?download\_id=16}
 
-\item If you are going to use a TBDML device with the HiWave debugger then you can clone my github repository which contains the complete information and the Windows 32-bit driver that works with WinXP, Vista and Windows 7. NOTE: NEED TO TEST 64BIT OS with 32BIT DRIVER.  Here is a link to my repository: https://github.com/DeuceEFI/TBDML-12f-GPL
+\item If you are going to use a TBDML device with the HiWave debugger then you can clone my github repository which contains the complete information and the Windows 32-bit driver that works with WinXP, Vista and Windows 7. \textbf{NOTE: NEED TO TEST 64BIT OS with 32BIT DRIVER.}
+\newline Here is a link to my repository: \newline
+\textsf{https://github.com/DeuceEFI/TBDML-12f-GPL}
 
-\item I need to add instructions here on how to setup Unsecure-12 in HiWave debugger to actually perform the unsecure task.
+\item \textbf{I need to add instructions here on how to setup Unsecure-12 in HiWave debugger to actually perform the unsecure task.}
 Search for and create a shortcut on your Desktop for hiwave.exe, then open the shortcut you just created.  
 Next click on TBDML
 
