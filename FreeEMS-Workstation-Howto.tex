@@ -1,12 +1,12 @@
 \documentclass[12pt,notitlepage,onecolumn,oneside,openany,draft]{memoir}
 \usepackage{amsmath,color,examplep,hyperref}
-\textwidth=6.5in
+\textwidth=7.0in
 \textheight=9.5in
-\topmargin=0in
+\topmargin=-0.5in
 \headheight=0in
-\headsep=0.4in
-\oddsidemargin=0in
-\evensidemargin=0in
+\headsep=0.3in
+\oddsidemargin=-0.35in
+\evensidemargin=-0.35in
 \title{\textsf{FreeEMS Workstation HowTo}}
 \author{\textsf{Andy Goss}}
 \date{\textsf{02/21/2012}}
@@ -23,74 +23,90 @@
 \\
 \textcolor{white}{x}
 \\
-\textsf{The purpose of this document is to describe how to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows 7 and either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot) Linux for the average computer user.  The author assumes that the user has installed Windows 7 at least one or more times as instructions for the exact process of installing Windows 7 will not be shown.} \newline
+\textsf{The purpose of this document is to describe how to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows and either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot) Linux for the average computer user.  The author assumes that the user has installed Windows at least one or more times as instructions for the exact process of installing Windows will not be shown.} \newline
 \\
 \textsf{Please read through the ENTIRE document before beginning the installation process to make sure you fully understand each step of the process.  The author is not responsible for any actions resulting from you the user following the instruction contained in this HowTo. This is a free world with no strings attached and YOU are responsible for YOUR actions.} \newline
 \\
 \textsf{To quote Morpheus from the movie "The Matrix": "This is your last chance. After this, there is no turning back. You take the blue pill - the story ends, you wake up in your bed and believe whatever you want to believe. You take the red pill - you stay in Wonderland and I show you how deep the rabbit-hole goes."} \newline
 \\
-\textsf{I am only your guide, you must make the decision to take the red pill or blue pill...  So if you want to take the "red pill" be my guest and follow along...} \newline
+\textsf{I am only your guide, you must make the decision to take the red pill or blue pill...} \newline
+\textsf{So if you decide to take the red pill and follow the white rabbit to the land of penguins...} \newline
 
-\chapter{\textsf{Step 1:  Install Windows 7}}
+\chapter{\textsf{Step 1:  Install Windows and Apps}}
 \begin{enumerate}
-\item \textsf{Install Windows 7 on half of the HDD space by creating an ~500 Gb partition during the Windows 7 installation.}
-\textsf{This can be either Windows 7 32bit or Windows 7 64bit.  I won't go into detail of how to install Windows 7, if you aren't familiar with the install process try http://www.google.com.  After Windows 7 has been installed and updated, continue to the next step.}
+\item \textsf{Install Windows on half of the HDD space by creating an ~500 Gb partition during the Windows installation.}
+\textsf{This can be either Windows 32bit or Windows 64bit.  I won't go into detail of how to install Windows, if you aren't familiar with the install process try http://www.google.com.  After Windows has been installed and updated, continue to the next step.}
 
-\item \textsf{Download and install CodeWarrior for HCS12(X) Microcontrollers (Classic) IDE :} \newline
-\url{http://cache.freescale.com/lgfiles/devsuites/HC12/CW_HC12_v5.1_SPECIAL.exe?fpsp=1&WT_TYPE=IDE%20-%20Debug,%20Compile%20and%20Build%20Tools&WT_VENDOR=FREESCALE&WT_FILE_FORMAT=exe&WT_ASSET=Downloads&sr=3}
-\newline
-
-\textsf{We need to install CodeWarrior so that we can load the Serial Monitor program onto the Freescale mc9s12xdp512 microprocessor.  We really aren't interested in the CodeWarrior IDE as a development platform, but we need the HiWave Debugger to flash the Serial Monitor program onto the blank MCU and it is included in the CodeWarrior download and installation process.}
+\item \textsf{We need to install CodeWarrior so that we can load the Serial Monitor program onto the Freescale mc9s12xdp512 microprocessor.  We really aren't interested in the CodeWarrior IDE as a development platform, but we need the HiWave Debugger to flash the Serial Monitor program onto the blank MCU and it is included in the CodeWarrior download and installation process.}\newline
+      \textsf{Download and install CodeWarrior for HCS12(X) Microcontrollers (Classic) IDE :} \newline
+      \url{http://cache.freescale.com/lgfiles/devsuites/HC12/CW_HC12_v5.1_SPECIAL.exe}
 
 \item \textsf{Download PE Micro's free Unsecure-12 utility for the HCS12(X) MCUs in case you get the Freescale MCU stuck in a Secured state. You can download it here after you register for a free account:} \newline
 \url{https://www.pemicro.com/login.cfm?from_url=/downloads/download_file.cfm?download_id=16}
 
-\item \textsf{If you are going to use a TBDML device with the HiWave debugger then you can clone my github repository which contains the complete information and the Windows 32-bit driver that works with WinXP, Vista and Windows 7. \textbf{NOTE: NEED TO TEST 64BIT OS with 32BIT DRIVER.}}
-\newline 
-\textsf{Here is a link to my repository:} \newline
-\url{https://github.com/DeuceEFI/TBDML-12f-GPL}
-
-\item \textsf{\textbf{I need to add instructions here on how to setup Unsecure-12 in HiWave debugger to actually perform the unsecure task.}}
+\item \textsf{To use a TBDML debug module with the HiWave debugger then you can clone my github repository which contains the complete information on how to build one and program it along with the Windows 32-bit driver that works with WinXP, Vista and Windows.} 
 \begin{itemize}
-	\item \textsf{Search for and create a shortcut on your Desktop for hiwave.exe, then open the shortcut to hiwave.exe that you just created.} \newline
-		  \textsf{The defualt path to hiwave.exe on a 32bit system is:} \newline
-	      \PVerb{C:\Program Files\Freescale\CWS12v5.1\Prog\hiwave.exe} \newline
-	      \textsf{The defualt path to hiwave.exe on a 64bit system is:} \newline
-	      \PVerb{C:\Program Files(x86)\Freescale\CWS12v5.1\Prog\hiwave.exe}
-	      
+      \item \textsf{Here is a link to my repository:} \newline
+            \url{https://github.com/DeuceEFI/TBDML-12f-GPL}
+      \item \textsf{Once you plug in the TBDML device into the USB port on your computer, Windows will ask for the location of the driver.} 
+      \item \textsf{The Windows 32bit driver is located in the \PVerb{bin_tbdml_win_driver_11} directory}  
+\end{itemize}
+
+\item \textsf{Search for and create a shortcut on your Desktop for hiwave.exe} 
+\begin{itemize}
+      \item \textsf{Open the shortcut to hiwave.exe that you just created.}
+      \item \textsf{The defualt path to hiwave.exe on a 32bit system is:} \newline
+            \PVerb{C:\Program Files\Freescale\CWS12v5.1\Prog\hiwave.exe} 
+      \item \textsf{The defualt path to hiwave.exe on a 64bit system is:} \newline 
+            \PVerb{C:\Program Files(x86)\Freescale\CWS12v5.1\Prog\hiwave.exe}
+      \item \textsf{Click on Connection then click on Load..., then click on the Yes button} 
+      \item \textsf{For Processor, select HC12.}
+      \item \textsf{For Connection, select TBDML.}
+      \item \textsf{For the Set Derivative, select MC9S12XDP512.}
+      \item \textsf{Now your HiWave debugger is setup to use the TBDML debug module with the Freescale MCU.}
+\end{itemize}
+
+\item \textsf{\textbf{Follow these instructions to setup Unsecure-12 in the HiWave debugger to perform the Unsecure task.}}
+\begin{itemize}
+      
 	\item \textsf{Next click on \textbf{TBDML HCS12} then click on \textbf{Command Files}} \newline
 	      \textsf{All the files below should be located in:} \newline
 		  \PVerb{C:\Program Files\Freescale\CWS12v5.1\(CodeWarrior_Examples)\HCS12X\BankedData\cmd\}
 		
 	\item \textsf{Click on the \textbf{Startup} tab, then click the \textbf{Browse...} button and locate the} \newline
-              \textsf{\textbf{P\&E\_ICD\_Startup.cmd} file, click the \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              \textsf{\textbf{P\&E\_ICD\_Startup.cmd} file, click the \textbf{Open} button, \newline
+ 			then click the checkbox for \textbf{Enable Command File}.}
               
 	\item \textsf{Click on the \textbf{Reset} tab, then click the \textbf{Browse...} button and locate the} \newline
-              \textsf{\textbf{P\&E\_ICD\_Reset.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              \textsf{\textbf{P\&E\_ICD\_Reset.cmd} file, click \textbf{Open} button, \newline 
+			then click the checkbox for \textbf{Enable Command File}.}
               
 	\item \textsf{Click on the \textbf{Preload} tab, then click the \textbf{Browse...} button and locate the} \newline
-              \textsf{\textbf{P\&E\_ICD\_Preload.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              \textsf{\textbf{P\&E\_ICD\_Preload.cmd} file, click \textbf{Open} button, \newline
+			then click the checkbox for \textbf{Enable Command File}.}
               
 	\item \textsf{Click on the \textbf{Postload} tab, then click the \textbf{Browse...} button and locate the} \newline
-              \textsf{\textbf{P\&E\_ICD\_Postload.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              \textsf{\textbf{P\&E\_ICD\_Postload.cmd} file, click \textbf{Open} button, \newline
+			then click the checkbox for \textbf{Enable Command File}.}
               
 	\item \textsf{Click on the \textbf{Vppon} tab, then click the \textbf{Browse...} button and locate the} \newline
-              \textsf{\textbf{P\&E\_ICD\_Vppon.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              \textsf{\textbf{P\&E\_ICD\_Vppon.cmd} file, click \textbf{Open} button, \newline
+			then click the checkbox for \textbf{Enable Command File}.}
               
 	\item \textsf{Click on the \textbf{Vppoff} tab, then click the \textbf{Browse...} button and locate the} \newline
-              \textsf{\textbf{P\&E\_ICD\_Vppoff.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              \textsf{\textbf{P\&E\_ICD\_Vppoff.cmd} file, click \textbf{Open} button, \newline
+			then click the checkbox for \textbf{Enable Command File}.}
               
 	\item \textsf{Click on the \textbf{Unsecure} tab, then click the \textbf{Browse...} button and locate the} \newline
-              \textsf{\textbf{P\&E\_ICD\_Erase\_unsecure\_hcs12.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              \textsf{\textbf{P\&E\_ICD\_Erase\_unsecure\_hcs12.cmd} file, click \textbf{Open} button, \newline
+			then click the checkbox for \textbf{Enable Command File}.}
               
     \item \textsf{Click on the \textbf{OK} button to save your changes.}
 \end{itemize}
-
-\item \textsf{Once you have completed all the Windows 7 updates and reboots proceed to Step 2 in the next chapter.}
 \end{enumerate}
 
-\chapter{\textsf{Step 2: Download and create boot media}} 
-\textsf{Download and create the appropriate boot media for either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot).
+\chapter{\textsf{Step 2: Download and create Linux boot media}} 
+\textsf{In this step you will need to download and create the appropriate boot media for either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot).
 You have a couple of options here, you can either go the route of Method \#1: (download a .iso file and make a CD to boot from) or you can follow Method \#2 (use unetbootin to make a bootable USB Thumb drive).} \newline
 
 \begin{enumerate}
