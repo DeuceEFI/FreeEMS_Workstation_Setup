@@ -1,4 +1,4 @@
-\documentclass[12pt,notitlepage,onecolumn,oneside,openany,draft]{memoir}
+\documentclass[12pt,notitlepage,onecolumn,oneside,openany]{memoir}
 \usepackage{amsmath,color,examplep,hyperref}
 \textwidth=7.0in
 \textheight=9.5in
@@ -13,15 +13,15 @@
 \begin{document}
 \maketitle
 
-\centerline{\textbf{\textsf{This document assumes you are starting with a blank hard drive.}}} \newline
-\centerline{\textbf{\textsf{\textcolor{red}{This means NO OPERATING SYSTEM}.}}} \newline
+\centerline{\textbf{\textsf{This document assumes you are starting with a blank hard drive.}}} 
+\centerline{\textbf{\textsf{\textcolor{red}{This means NO OPERATING SYSTEM}.}}}
 \\
-\textcolor{white}{x}
+\textcolor{white}{xyz}
 \\
-\centerline{\textbf{\textsf{Make sure you start with Chapter 1, Step 1 and do not skip any steps.}}} \newline
-\centerline{\textbf{\textsf{\textcolor{red}{They are in this order for a reason!}}}} \newline
+\centerline{\textbf{\textsf{Make sure you start with Chapter 1, Step 1 and do not skip any steps.}}}
+\centerline{\textbf{\textsf{\textcolor{red}{They are in this order for a reason!}}}}
 \\
-\textcolor{white}{x}
+\textcolor{white}{xyz2}
 \\
 \textsf{The purpose of this document is to describe how to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows and either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot) Linux for the average computer user.  The author assumes that the user has installed Windows at least one or more times as instructions for the exact process of installing Windows will not be shown.} \newline
 \\
@@ -241,26 +241,32 @@ Select “Manual.”  Click Continue.}
 \texttt{\# FreeEMS Toolchain} \newline
 \texttt{deb http://debs.diyefi.org css-debs binary}
 
-\item \textsf{From a Root Terminal, edit \path{/etc/sudoers} and add your user under root.}
+\item \textsf{Open a Terminal window and type:} \newline
+      \texttt{\$ sudo gedit /etc/sudoers} \newline
+      \textsf{and add your user under root.}
 
-\item \textsf{From a Root Terminal, edit /etc/group and add your username to:} \newline
+\item \textsf{In the same Terminal window, type:} \newline
+      \texttt{sudo gedit /etc/group} /textsf{ and add your username to:} \newline
       \texttt{tty, dialout, sudo, operator, users, iocard and staff} \newline
       \textsf{You may not have all of these, only add your username after the groups that exist on your system.}
 
-\item \textsf{This will require a reboot to assign the permissions, so do that now.}
+\item \textsf{These changes will require a reboot to assign the permissions, so do that now.}
 
-\item \textsf{Open a Terminal window (not a Root Terminal) and update apt's database and install upgraded system files:} \newline
+\item \textsf{Open a Terminal window and update apt's database and install upgraded system files:} \newline
       \texttt{\$ sudo apt-get update} \newline
       \texttt{\$ sudo apt-get upgrade}
 
 \item \textsf{Install the tools necessary for MegaTunix:} \newline
+      \textsf{In the same Terminal window, type:} \newline
       \texttt{\$ sudo apt-get install pkg-config libtool intltool libgtkglext1-dev g++ gcc flex} \newline
       \texttt{\$ sudo apt-get install bison glade libglade2-dev make git-core gdb automake1.9}
 
 \item \textsf{Install the FreeEMS Toolchain so you can compile the firmware:} \newline
+      \textsf{In the same Terminal window, type:} \newline
       \texttt{\$ sudo apt-get install freeems-toolchain cutecom}
 
 \item \textsf{Install linux-headers:} \newline
+      \textsf{In the same Terminal window, type:} \newline
       \texttt{\$ sudo apt-get install linux-headers-2.6.32-5-686}
 \end{enumerate}
 
@@ -268,17 +274,21 @@ Select “Manual.”  Click Continue.}
 
 \begin{enumerate}
 \item \textsf{Install QT4} \newline
+      \textsf{Open a Terminal window and type:} \newline
       \texttt{\$ sudo apt-get update \&\& sudo apt-get install qt4-qmake libqt4-dev}
 
 \item \textsf{Now the system should be ready to compile MegaTunix, FreeEMS, FreeEMS-Loader and qserialport!}
 
 \item \textsf{Create a git directory in your home directory:} \newline
+      \textsf{In the same Terminal window, type:} \newline
       \texttt{\$ mkdir \~/git}
 
 \item \textsf{Change to your new git directory:} \newline
+      \textsf{In the same Terminal window, type:} \newline
       \texttt{\$ cd \~/git}
 
 \item \textsf{Clone the git repositories for qserialport, freeems-loader, MegaTunix and freeems-vanilla} \newline
+      \textsf{In the same Terminal window, type:} \newline
       \texttt{\$ git clone git://gitorious.org/inbiza-labs/qserialport.git} \newline
       \texttt{\$ git clone git://github.com/seank/freeems-loader.git} \newline
       \texttt{\$ git clone git://github.com/djandruczyk/MegaTunix.git} \newline
@@ -291,6 +301,7 @@ Select “Manual.”  Click Continue.}
       \texttt{\~/git/freeems-vanilla}
 
 \item \textsf{Start with qserialport since we need it for SeanK's freeems-loader to communicate with the serial port:} \newline
+      \textsf{In the same Terminal window, type:} \newline
       \texttt{\$ cd \~/git/qserialport} \newline
       \texttt{\$ ./configure} \newline
       \texttt{\$ make} \newline
@@ -304,10 +315,12 @@ Select “Manual.”  Click Continue.}
 
 \begin{enumerate}
 \item \textsf{Make sure your freeems-loader git clone is up to date by excuting the following:} \newline
+      \textsf{Open a Terminal window and type:} \newline
       \texttt{\$ cd \~/git/freeems-loader} \newline
       \texttt{\$ git pull}
 
 \item \textsf{Next compile freeems-loader:} \newline
+      \textsf{In the same Terminal window, type:} \newline
       \texttt{\$ cd \~/git/freeems-loader/src} \newline
       \texttt{\$ qmake \&\& make all}
 
@@ -327,55 +340,81 @@ Select “Manual.”  Click Continue.}
 
 \begin{enumerate}
 \item \textsf{Make sure your MegaTunix git clone is up to date by excuting the following:} \newline
-      \texttt{\$ cd ~/git/Megatunix} \newline
+      \textsf{Open a Terminal window and type:} \newline
+      \texttt{\$ cd \~/git/Megatunix} \newline
       \texttt{\$ git pull}
 
 \item \textsf{Now compile MegaTunix:} \newline
-      \texttt{\$ cd ~/git/MegaTunix} \newline
+      \textsf{In the same Terminal window, type:} \newline
+      \texttt{\$ cd \~/git/MegaTunix} \newline
       \texttt{\$ ./autogen.sh} \newline
       \texttt{\$ make} \newline
       \texttt{\$ sudo make install} \newline
       \texttt{\$ sudo /sbin/ldconfig} \newline
 \end{enumerate}
 
-W. Compile FreeEMS Firmware:
-      \$ cd ~/git/freeems-vanilla/src
-	make s19
+\chapter{\textsf{FreeEMS Firmware}}
 
-X. FreeEMS firmware can be found at:
-      \$ cd ~/git/freeems-vanilla/src/firmware
+\textsf{In this chapter are the instructions to build the freeems-vanilla firmware.} \newline
 
-Y. freeems.serial.monitor.s19 is located in:
-      ~/git/freeems-vanilla/lib
+\begin{enumerate}
+\item \textsf{Make sure your freeems-vanilla git clone is up to date by excuting the following:} \newline
+      \textsf{Open a Terminal window and type:} \newline
+      \texttt{\$ cd \~/git/freeems-vanilla} \newline
+      \texttt{\$ git pull}
 
-Z. Install libusb:
-      \$ sudo apt-get install libusb-0.1.4 libusb-1.0-0 libusb-1.0-0-dev libusb-dev
+\item \textsf{Build the FreeEMS Firmware:} \newline
+      \textsf{In the same Terminal window and type:} \newline
+      \texttt{\$ cd \~/git/freeems-vanilla/src} \newline
+      \texttt{\$ make s19}
 
-AA. To get libusb devices to run without being "root":
-1. Plug in your USB device and run:
-\$ dmesg | tail
-to find IDVendor and IDProduct of your USB device.
-2. Example output:
-[49182.484111] usb 2-4: New USB device found, idVendor=0425, idProduct=1000
-Modify /etc/udev/udev.conf and ensure that it at least has following settings-
-\$ sudo gedit /etc/udev/udev.conf		
-udev_root="/dev/"
-udev_db="/dev/.udevdb"
-# udev_rules="/etc/udev/rules.d/"
-# udev_permissions="/etc/udev/permissions.d/"
-default_mode="0660"
-udev_log="err"
-3. Create USB udev rule:
-\$ sudo cat > /etc/udev/rules.d/23-usb.rules << "EOF"
-# Set group ownership for raw USB devices
-# This is for the TBDML
-ACTION=="add", SUBSYSTEM=="usb", SYSFS{idVendor}=="0425", SYSFS{idProduct}=="1000", ENV{DEVTYPE}=="usb_device", GROUP="dialout", MODE="0660", SYMLINK+="tbdml-\%k"
-#This is for the Saleae Logic Analyzer 
-ACTION=="add", SUBSYSTEM=="usb", SYSFS{idVendor}=="0925", SYSFS{idProduct}=="3881", ENV{DEVTYPE}=="usb_device", GROUP="dialout", MODE="0660", SYMLINK+="saleae-\%k"
-EOF
-4. Kill and Respawn udev deamon and run the newly created rules:
-\$ sudo skill udevd
-\$ sudo /sbin/udevd -d
+\item \textsf{Your newly built FreeEMS firmware can be found in:} \newline
+      \texttt{\$ cd \~/git/freeems-vanilla/src/firmware}
+
+\item \textsf{freeems.serial.monitor.s19 is located in:} \newline
+      \texttt{\$ cd \~/git/freeems-vanilla/lib}
+\end{enumerate}
+
+\chapter{\textsf{Set User Permission to USB Device}}
+
+\textsf{In this chapter we will setup your USB TBDML debug module so that your normal user can use it without using the \textbf{sudo} command.} \newline
+
+\begin{enumerate}
+\item \textsf{Install libusb:} \newline
+      \texttt{\$ sudo apt-get install libusb-0.1.4 libusb-1.0-0 libusb-1.0-0-dev libusb-dev}
+
+\item \textsf{To get libusb devices to run without being root:} \newline
+	\begin{enumerate}
+		\item \textsf{Plug in your USB device and run:} \newline
+			\texttt{\$ dmesg | tail} \newline
+			\textsf{to find IDVendor and IDProduct of your USB device.} \newline
+			\textsf{Example output:} \newline
+			\texttt{[49182.484111] usb 2-4: New USB device found, idVendor=0425, idProduct=1000} \newline
+
+		\item \textsf{Modify /etc/udev/udev.conf and ensure that it at least has following settings:} \newline
+			\texttt{\$ sudo gedit /etc/udev/udev.conf} \newline		
+			\PVerb{udev_root="/dev/"} \newline
+			\PVerb{udev_db="/dev/.udevdb"} \newline
+			\PVerb{# udev_rules="/etc/udev/rules.d/"} \newline
+			\PVerb{# udev_permissions="/etc/udev/permissions.d/"} \newline
+			\PVerb{default_mode="0660"} \newline
+			\PVerb{udev_log="err"}
+	\end{enumerate}
+\item \textsf{Create USB udev rule:} \newline
+      \texttt{\$ sudo cat > /etc/udev/rules.d/23-usb.rules << "EOF"} \newline
+      \texttt{\# Set group ownership for raw USB devices} \newline
+      \texttt{\# This is for the TBDML} \newline
+      \texttt{ACTION=="add", SUBSYSTEM=="usb", SYSFS\{idVendor\}=="0425", SYSFS\{idProduct\}=="1000", ENV\{DEVTYPE\}=="usb\_device", GROUP="dialout", MODE="0660", SYMLINK+="tbdml-\%k"} \newline
+      \texttt{\#This is for the Saleae Logic Analyzer} \newline
+      \texttt{ACTION=="add", SUBSYSTEM=="usb", SYSFS\{idVendor\}=="0925", SYSFS\{idProduct\}=="3881", ENV\{DEVTYPE\}=="usb\_device", GROUP="dialout", MODE="0660", SYMLINK+="saleae-\%k"} \newline
+      \texttt{EOF}
+
+\item \textsf{Kill and Respawn udev deamon and run the newly created rules:} \newline
+      \texttt{\$ sudo skill udevd} \newline
+      \texttt{\$ sudo /sbin/udevd -d} \newline
+
+\end{enumerate}
+
 
 BB. Download hcs12mem from:
 	http://sourceforge.net/projects/hcs12mem/files/latest/download
