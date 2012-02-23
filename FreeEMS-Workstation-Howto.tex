@@ -1,12 +1,10 @@
 \documentclass[12pt,notitlepage,onecolumn,oneside,openany,draft]{memoir}
-\usepackage{color}
-\usepackage{amsmath}
-\usepackage{hyperref}
+\usepackage{amsmath,color,examplep,hyperref}
 \textwidth=6.5in
 \textheight=9.5in
 \topmargin=0in
 \headheight=0in
-\headsep=0in
+\headsep=0.4in
 \oddsidemargin=0in
 \evensidemargin=0in
 \title{\textsf{FreeEMS Workstation HowTo}}
@@ -15,214 +13,327 @@
 \begin{document}
 \maketitle
 
-\begin{center}
-\textbf{\textsf{This document assumes you are starting with a blank hard drive.}} \newline
-\textbf{\textsf{ie: \textcolor{red}{NO OPERATING SYSTEM}.}} \newline
-\newline
-\textbf{\textsf{Make sure you start with Step A and do not skip any steps.}} \newline
-\textbf{\textsf{\textcolor{red}{They are in this order for a reason!}}} \newline
-\end{center}
-\newline
+\centerline{\textbf{\textsf{This document assumes you are starting with a blank hard drive.}}} \newline
+\centerline{\textbf{\textsf{\textcolor{red}{This means NO OPERATING SYSTEM}.}}} \newline
+\\
+\textcolor{white}{x}
+\\
+\centerline{\textbf{\textsf{Make sure you start with Chapter 1, Step 1 and do not skip any steps.}}} \newline
+\centerline{\textbf{\textsf{\textcolor{red}{They are in this order for a reason!}}}} \newline
+\\
+\textcolor{white}{x}
+\\
 \textsf{The purpose of this document is to describe how to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows 7 and either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot) Linux for the average computer user.  The author assumes that the user has installed Windows 7 at least one or more times as instructions for the exact process of installing Windows 7 will not be shown.} \newline
-\newline
-\textsf{Please read through the ENTIRE document before beginning the installation process to make sure you fully understand each step of the process.  The author is not responsible for any actions resulting from you the user following the instruction contained in this HowTo, this is a free world with no strings attached and YOU are responsible for YOUR actions.} \newline
-\newline
-\textsf{To quote Morpheus from the movie "The Matrix": "This is your last chance. After this, there is no turning back. You take the blue pill - the story ends, you wake up in your bed and believe whatever you want to believe. You take the red pill - you stay in Wonderland and I show you how deep the rabbit-hole goes." \newline
-\newline
-I am only your guide, you must make the decision to take the red pill or blue pill...  So if you want to take the "red pill" be my guest and follow along.} \newline
-\newline
-\chapter{\textsf{Step 1:  Install Windows 7}}}}
+\\
+\textsf{Please read through the ENTIRE document before beginning the installation process to make sure you fully understand each step of the process.  The author is not responsible for any actions resulting from you the user following the instruction contained in this HowTo. This is a free world with no strings attached and YOU are responsible for YOUR actions.} \newline
+\\
+\textsf{To quote Morpheus from the movie "The Matrix": "This is your last chance. After this, there is no turning back. You take the blue pill - the story ends, you wake up in your bed and believe whatever you want to believe. You take the red pill - you stay in Wonderland and I show you how deep the rabbit-hole goes."} \newline
+\\
+\textsf{I am only your guide, you must make the decision to take the red pill or blue pill...  So if you want to take the "red pill" be my guest and follow along...} \newline
+
+\chapter{\textsf{Step 1:  Install Windows 7}}
 \begin{enumerate}
 \item \textsf{Install Windows 7 on half of the HDD space by creating an ~500 Gb partition during the Windows 7 installation.}
 \textsf{This can be either Windows 7 32bit or Windows 7 64bit.  I won't go into detail of how to install Windows 7, if you aren't familiar with the install process try http://www.google.com.  After Windows 7 has been installed and updated, continue to the next step.}
 
 \item \textsf{Download and install CodeWarrior for HCS12(X) Microcontrollers (Classic) IDE :} \newline
-\url{http://cache.freescale.com/lgfiles/devsuites/HC12/CW_HC12_v5.1_SPECIAL.exe?fpsp=1&WT_TYPE=IDE%20-%20Debug,%20Compile%20and%20Build%20Tools&WT_VENDOR=FREESCALE&WT_FILE_FORMAT=exe&WT_ASSET=Downloads&sr=3}\newline
+\url{http://cache.freescale.com/lgfiles/devsuites/HC12/CW_HC12_v5.1_SPECIAL.exe?fpsp=1&WT_TYPE=IDE%20-%20Debug,%20Compile%20and%20Build%20Tools&WT_VENDOR=FREESCALE&WT_FILE_FORMAT=exe&WT_ASSET=Downloads&sr=3}
 \newline
+
 \textsf{We need to install CodeWarrior so that we can load the Serial Monitor program onto the Freescale mc9s12xdp512 microprocessor.  We really aren't interested in the CodeWarrior IDE as a development platform, but we need the HiWave Debugger to flash the Serial Monitor program onto the blank MCU and it is included in the CodeWarrior download and installation process.}
 
 \item \textsf{Download PE Micro's free Unsecure-12 utility for the HCS12(X) MCUs in case you get the Freescale MCU stuck in a Secured state. You can download it here after you register for a free account:} \newline
-\url{https://www.pemicro.com/login.cfm?from\_url=/downloads/download_file.cfm?download_id=16}
+\url{https://www.pemicro.com/login.cfm?from_url=/downloads/download_file.cfm?download_id=16}
 
-\item \textsf{If you are going to use a TBDML device with the HiWave debugger then you can clone my github repository which contains the complete information and the Windows 32-bit driver that works with WinXP, Vista and Windows 7. \textbf{NOTE: NEED TO TEST 64BIT OS with 32BIT DRIVER.}
-\newline Here is a link to my repository:} \newline
+\item \textsf{If you are going to use a TBDML device with the HiWave debugger then you can clone my github repository which contains the complete information and the Windows 32-bit driver that works with WinXP, Vista and Windows 7. \textbf{NOTE: NEED TO TEST 64BIT OS with 32BIT DRIVER.}}
+\newline 
+\textsf{Here is a link to my repository:} \newline
 \url{https://github.com/DeuceEFI/TBDML-12f-GPL}
 
-\item \textsf{\textbf{I need to add instructions here on how to setup Unsecure-12 in HiWave debugger to actually perform the unsecure task.}
-Search for and create a shortcut on your Desktop for hiwave.exe, then open the shortcut you just created.  
-Next click on TBDML}
+\item \textsf{\textbf{I need to add instructions here on how to setup Unsecure-12 in HiWave debugger to actually perform the unsecure task.}}
+\begin{itemize}
+	\item \textsf{Search for and create a shortcut on your Desktop for hiwave.exe, then open the shortcut to hiwave.exe that you just created.} \newline
+		  \textsf{The defualt path to hiwave.exe on a 32bit system is:} \newline
+	      \PVerb{C:\Program Files\Freescale\CWS12v5.1\Prog\hiwave.exe} \newline
+	      \textsf{The defualt path to hiwave.exe on a 64bit system is:} \newline
+	      \PVerb{C:\Program Files(x86)\Freescale\CWS12v5.1\Prog\hiwave.exe}
+	      
+	\item \textsf{Next click on \textbf{TBDML HCS12} then click on \textbf{Command Files}} \newline
+	      \textsf{All the files below should be located in:} \newline
+		  \PVerb{C:\Program Files\Freescale\CWS12v5.1\(CodeWarrior_Examples)\HCS12X\BankedData\cmd\}
+		
+	\item \textsf{Click on the \textbf{Startup} tab, then click the \textbf{Browse...} button and locate the} \newline
+              \textsf{\textbf{P\&E\_ICD\_Startup.cmd} file, click the \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              
+	\item \textsf{Click on the \textbf{Reset} tab, then click the \textbf{Browse...} button and locate the} \newline
+              \textsf{\textbf{P\&E\_ICD\_Reset.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              
+	\item \textsf{Click on the \textbf{Preload} tab, then click the \textbf{Browse...} button and locate the} \newline
+              \textsf{\textbf{P\&E\_ICD\_Preload.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              
+	\item \textsf{Click on the \textbf{Postload} tab, then click the \textbf{Browse...} button and locate the} \newline
+              \textsf{\textbf{P\&E\_ICD\_Postload.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              
+	\item \textsf{Click on the \textbf{Vppon} tab, then click the \textbf{Browse...} button and locate the} \newline
+              \textsf{\textbf{P\&E\_ICD\_Vppon.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              
+	\item \textsf{Click on the \textbf{Vppoff} tab, then click the \textbf{Browse...} button and locate the} \newline
+              \textsf{\textbf{P\&E\_ICD\_Vppoff.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              
+	\item \textsf{Click on the \textbf{Unsecure} tab, then click the \textbf{Browse...} button and locate the} \newline
+              \textsf{\textbf{P\&E\_ICD\_Erase\_unsecure\_hcs12.cmd} file, click \textbf{Open} button, then click the checkbox for \textbf{Enable Command File}.}
+              
+    \item \textsf{Click on the \textbf{OK} button to save your changes.}
+\end{itemize}
 
-\item \textsf{Once you are done with all the Windows 7 updates and rebooting proceed to Step B on the next page.}
+\item \textsf{Once you have completed all the Windows 7 updates and reboots proceed to Step 2 in the next chapter.}
 \end{enumerate}
 
 \chapter{\textsf{Step 2: Download and create boot media}} 
 \textsf{Download and create the appropriate boot media for either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot).
-You have a couple of options here, you can go the route of  Method #1: download a .iso file and make a CD to boot from or you can just follow Method #2 and use unetbootin to make a bootable USB “Thumb” drive.}
-\newline
-\begin{enumerate}
-\item Download a disk image “.iso” file of your Linux distribution of choice, here are a few links:\newline
-Debian 32bit Netboot:\newline
-http://cdimage.debian.org/debian-cd/6.0.4/i386/iso-cd/debian-6.0.4-i386-netinst.iso\newline
-Debian 64bit Netboot:\newline
-http://cdimage.debian.org/debian-cd/6.0.4/amd64/iso-cd/debian-6.0.4-amd64-netinst.iso\newline
-Ubuntu 32bit:\newline
-http://releases.ubuntu.com/11.10/ubuntu-11.10-desktop-i386.iso\newline
-Ubuntu 64bit:\newline
-http://releases.ubuntu.com/11.10/ubuntu-11.10-desktop-amd64.iso\newline
-\newline
-From either of the above .iso files use the CD burning software of your choice to make a bootable CD-ROM to launch the installer. Or you can also use unetbootin as in Method #2 and follow these directions: http://unetbootin.sourceforge.net/#other to create a bootable USB “Thumb” drive from the .iso file that you downloaded.  Use this method if you want the 64bit version as the unetbootin easy method (Method #2 below) only creates a 32bit bootable installer.
+You have a couple of options here, you can either go the route of Method \#1: (download a .iso file and make a CD to boot from) or you can follow Method \#2 (use unetbootin to make a bootable USB Thumb drive).} \newline
 
-\item Download unetbootin from:\newline
-http://unetbootin.sourceforge.net/unetbootin-windows-latest.exe\newline
-Run the unetbootin-windows-latest.exe file while the computer is running from its Windows 7 partition and follow the instructions at http://unetbootin.sourceforge.net/#install to create a bootable Debian 32bit or Ubuntu 32bit USB thumb drive.
-\end{enumerate}
-\newline
-\textbf{For the next step of installing Debian or Ubuntu, only follow C OR D but not both.}
-\newline
-\chapter{Install Linux}
-\newline
-Insert the boot media you created in Step B above to install Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot) on the remaining ~500 Gb HDD space.  Now reboot your computer making sure to choose the boot media you just created.
-\newline
 \begin{enumerate}
-\item To reduce reduce the number of steps, this example begins at the step where disk detection starts after you have gone through the basic steps of the graphical installer. 
-Select “Manual.”  Click Continue. 
-\item Here, the installer should show the 2 existing NTFS (Windows 7) partitions. As you can see, there is free, or unallocated space. Select FREE SPACE, then click Continue. 
-\item Scroll to “Create a new partition.” Continue. 
-\item By default the /boot partition on Debian 6 is allocated a disk space of about 250 MB. Most Linux distributions use 500 MB. I think 1000 MB will do just fine for my system. Continue. 
-\item On Linux, you cannot create more than four primary partitions. And since we already have two primary partitions (for Windows 7), the installer will by default want to create the first and subsequent Debian partitions as logical partitions. The partition numbers will, therefore, start at 5. The boot partition, which is the first one we are creating, will be /dev/sda5. Note this carefully, because GRUB will be installed on this partition for reasons that I will explain when we get to that step. Click Continue. 
-\item Click on Logical. Click Continue. 
-\item Click on Beginning. Click Continue. 
-\item On this next Partition Disks screen, select the "Use as:" "Ext3 journaling file system" and "Mount point:" "/boot" for the new partition. Then scroll to “Done setting up the partition.” Click Continue. 
-\item With /boot created. you can now create other partitions. For this example, I am going to create LVM partitions. 
-\item Select the free space and click Continue. 
-\item Click on “Create a new partition.” Click Continue. 
-\item Since this partition will be used as a Physical Volume for LVM, it is okay to use all available space on the disk. Click Continue. 
-\item Click on "Logical". Click Continue. 
-\item Click on “Use as.” Continue. 
-\item Select “physical volume for LVM.” If you prefer installing the system on an encrypted LVM (recommended), select “physical volume for encryption.” Scroll to “Done setting up the partition.” Click Continue. 
-\item With the PV created, scroll to “Configure the Logical Volume Manager” to create the Volume Group (VG). Click Continue. 
-\item At the "Write the changes to disks and configure LVM" prompt answer "Yes". Note the partition number of the boot partition (partition #5). That piece of information will come in handy several steps ahead. Click Continue. 
-\item Scroll to “Create volume group.” Click Continue. 
-\item Give the Volume Group a name. Any name will do. The shorter the better. Capitalization is optional.  I called mine "HU" Continue. 
-\item These are all the partitions on the disk. Which one will be made a member of the VG? Only a Physical Volume qualifies to be included in a VG. In this example, that will be /dev/sda6, the Physical Volume that was created earlier. Select /dev/sda6 and click Continue. 
-\item The Volume Group has been created. 
-\item The next task is to create Logical Volumes, which are the equivalents of disk partitions. For this example, only two Logical Volumes will be created: / and swap. You can create more if you like, but for a desktop system, those two should be all you need to create during installation. 
-\item Click on "Create logical volume" and click Continue. 
-\item The first step in creating a Logical Volume (LV), is to identify the Volume Group the disk space for the LV will be taken from. Click on "HU" and click Continue. 
-\item The first LV will be for /. Like the VG’s name, the names for the LVs can be anything you feel comfortable with. For ease of management, it is better to use a name that reminds you of the mount point of the LV). I like to name the LV that will be used for / as "root" and "swap" for that which will be used for swap. 
-\item Name the Logical Volume "root". Click Continue. 
-\item How much disk space should be allocated to this "root" LV? I used 494 GB for the / partition. Click Continue. 
-\item Click on "Create logical volume" and click Continue. 
-\item Name the Logical Volume "swap". Click Continue. 
-\item How much disk space should be allocated to this "swap" LV? I used the remainder of the FREE SPACE (14 GB) for the swap partition. Click Continue. 
-\item Scroll to “Finish.” Click Continue. 
-\item The last task in creating LVs is to specify a file system and mount points. So, select the first (largest) LV, and click Continue. 
-\item Scroll to “Use as” to specify a file system for the / partition. The default on Debian 6 is "Ext3 journaling file system". You can stick with that or choose any other available journaling file system. Click Continue. 
-\item Scroll to “Mount point” and choose the mount point of "/" for the LV. Then scroll to “Done setting up the partition.” Click Continue. 
-\item Select the second (smallest) LV, and click Continue. 
-\item Scroll to “Use as” to specify "swap". Click Continue. 
-\item Scroll to “Done setting up the partition.” Continue. 
-\item Scroll to “Finish partitioning and write changes to disk.” Continue. 
-\item Debian 6 uses GRUB 2 as the bootloader, and will attempt to install it on the Master Boot Record (MBR) of the hard disk. Note, however, that installing GRUB in the MBR when you are attempting to dual-boot with Windows will overwrite Windows boot files. This is not the recommended approach. It is better to install it in the boot partition of the Debian installation. So, select "No" and click Continue. 
-\item All the steps involved in this tutorial are important, but this one is especially so. Remember the partition number of the boot partition? For this example, the boot partition is /dev/sda5. The partition number is, therefore, 5. The device to specify for installing GRUB, in GRUB’s syntax, is (hd0,5). The 0 is the first hard disk and the 5, the partition number. Click Continue. 
-\item Continue with the rest of the installation. When completed, the system will reboot into Windows. This is expected. 
-\item The final task is to add an entry for Debian 6 in Windows’ boot menu. The easiest tool I know of to do that is EasyBCD, a free application from NeoSmart Technologies. You may download the latest version here: http://neosmart.net/dl.php?id=1 
-\item Install EasyBCD and launch it. 
-\item This is the main tab of EasyBCD. It shows the only entry in the boot menu. Click on Add New Entry. 
-\item On the Add New Entry tab, click on the Linux/BSD tab in the upper part of the window. Debian 6 uses GRUB 2, so select “GRUB 2″ from the Type menu. Edit the Name field to Debian, then click on the Add Entry button. Click on Edit boot Menu. 
-\item Here are the two entries. Windows is the default. You can change the order if you want to. Exit EasyBCD and reboot. 
-\item To be sure that it works, boot into Debian. It should if you followed all the steps as suggested. Note that if you attempt to boot into Debian, you will next encounter the GRUB menu.
+\item \textsf{Download a disk image .iso file of your Linux distribution of choice, here are a few links:} \newline
+\textsf{Debian 32bit CD/DVD images:} \newline
+\url{http://cdimage.debian.org/debian-cd/6.0.4/i386/iso-cd/}\newline
+\textsf{Debian 64bit CD/DVD images:} \newline
+\url{http://cdimage.debian.org/debian-cd/6.0.4/amd64/iso-cd/}\newline
+\textsf{Ubuntu 32bit CD/DVD images:} \newline
+\url{http://releases.ubuntu.com/11.10/ubuntu-11.10-desktop-i386.iso} \newline
+\textsf{Ubuntu 64bit CD/DVD images:} \newline
+\url{http://releases.ubuntu.com/11.10/ubuntu-11.10-desktop-amd64.iso} \newline
+\newline
+\textsf{With any of the above .iso files use the CD burning software of your choice to make a bootable CD-ROM to launch the installer. Or you can also use unetbootin as in Method \#2 and follow these directions:} \newline
+\url{http://unetbootin.sourceforge.net/#other} \newline
+\textsf{to create a bootable USB Thumb drive from the .iso file that you downloaded.}
+
+\item \textsf{Download unetbootin from:} \newline
+\url{http://unetbootin.sourceforge.net/unetbootin-windows-latest.exe}\newline
+\textsf{Run the unetbootin-windows-latest.exe file while the computer is running from its Windows 7 partition and follow the instructions at:} \newline
+\url{http://unetbootin.sourceforge.net/#install} \newline
+\textsf{to create a bootable Debian 32bit or Ubuntu 32bit USB thumb drive.}
 \end{enumerate}
 
-D. From a Root Terminal, edit /etc/apt/sources.list and add:
-	For 32bit OS:
-# FreeEMS Toolchain
-deb http://debs.diyefi.org css-debs binary
+\chapter{\textsf{Install Linux}}
 
-E. From a Root Terminal, edit /etc/sudoers and add your user under root.
+\textsf{Insert the boot media you created in Chapter 2 to install Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot) on the remaining ~500 Gb HDD space.  Now reboot your computer making sure to choose the boot media you just created.} \newline
 
-F. From a Root Terminal, edit /etc/group and add your username to:
-tty, dialout, sudo, operator, users, iocard and staff
-You may not have all of these, only add your username after the groups that exist on your system.
+\begin{enumerate}
+\item \textsf{To reduce reduce the number of steps, this example begins at the step where disk detection starts after you have gone through the basic steps of the graphical installer. 
+Select “Manual.”  Click Continue.}
 
-G. This will require a reboot to assign the permissions, so do that now.
+\item \textsf{Here, the installer should show the 2 existing NTFS (Windows 7) partitions. As you can see, there is free, or unallocated space. Select FREE SPACE, then click Continue.}
 
-H. Open a Terminal window (not a Root Terminal) and update apt's database and install upgraded system files:
-\$ sudo apt-get update
-\$ sudo apt-get upgrade
+\item \textsf{Scroll to “Create a new partition.” Continue.} 
 
-I. Install the tools necessary for MegaTunix:
-\$ sudo apt-get install pkg-config libtool intltool libgtkglext1-dev g++ gcc flex 
-\$ sudo apt-get install bison glade libglade2-dev make git-core gdb automake1.9
+\item \textsf{By default the /boot partition on Debian 6 is allocated a disk space of about 250 MB. Most Linux distributions use 500 MB. I think 1000 MB will do just fine for my system. Continue.}
 
-J. Install the FreeEMS Toolchain so you can compile the firmware:
-	\$ sudo apt-get install freeems-toolchain cutecom
+\item \textsf{In Linux, you cannot create more than four primary partitions. And since we already have two primary partitions (for Windows 7), the installer will by default want to create the first and subsequent Debian partitions as logical partitions. The partition numbers will, therefore, start at 5. The boot partition, which is the first one we are creating, will be /dev/sda5. Note this carefully, because GRUB will be installed on this partition for reasons that I will explain when we get to that step. Click Continue.}
 
-K. Install linux-headers:
-	\$ sudo apt-get install linux-headers-2.6.32-5-686
+\item \textsf{Click on Logical. Click Continue.}
 
-L. Install QT4
-	\$ sudo apt-get update && sudo apt-get install qt4-qmake libqt4-dev
+\item \textsf{Click on Beginning. Click Continue.} 
 
-M. Now the system should be ready to compile MegaTunix, FreeEMS, FreeEMS-Loader and qserialport!
+\item \textsf{On this next Partition Disks screen, select the "Use as:" "Ext3 journaling file system" and "Mount point:" "/boot" for the new partition. Then scroll to “Done setting up the partition.” Click Continue.}
 
-N. Create a git directory in your home directory:
-	\$ mkdir ~/git
+\item \textsf{With /boot created. you can now create other partitions. For this example, I am going to create LVM partitions.}
+ 
+\item \textsf{Select the free space and click Continue.}
+ 
+\item \textsf{Click on “Create a new partition.” Click Continue.} 
 
-O. Change to your new git directory:
-	\$ cd ~/git
+\item \textsf{Since this partition will be used as a Physical Volume for LVM, it is okay to use all available space on the disk. Click Continue.}
+ 
+\item \textsf{Click on "Logical". Click Continue.}
+ 
+\item \textsf{Click on “Use as.” Continue.} 
 
-P. Clone the git repositories for qserialport, freeems-loader, MegaTunix and freeems-vanilla
-	\$ git clone git://gitorious.org/inbiza-labs/qserialport.git
-	\$ git clone git://github.com/seank/freeems-loader.git
-	\$ git clone git://github.com/djandruczyk/MegaTunix.git
-	\$ git clone git://github.com/fredcooke/freeems-vanilla.git
+\item \textsf{Select “physical volume for LVM.” If you prefer installing the system on an encrypted LVM (recommended), select “physical volume for encryption.” Scroll to “Done setting up the partition.” Click Continue.} 
 
-Q. This creates a directory within the git directory named after each repository such as:
-	~/git/qserialport	
-	~/git/freeems-loader
-	~/git/MegaTunix
-	~/git/freeems-vanilla
+\item \textsf{With the PV created, scroll to “Configure the Logical Volume Manager” to create the Volume Group (VG). Click Continue.}
+ 
+\item \textsf{At the "Write the changes to disks and configure LVM" prompt answer "Yes". Note the partition number of the boot partition (partition \#5). That piece of information will come in handy several steps ahead. Click Continue.} 
 
-R. Start with qserialport since we need it for SeanK's freeems-loader to communicate with the serial port:
-	\$ cd ~/git/qserialport
-	\$ ./configure
-	\$ make
-	\$ sudo make install
-	\$ sudo /sbin/ldconfig
+\item \textsf{Scroll to “Create volume group.” Click Continue.} 
 
-S. Next compile freeems-loader:
-	\$ cd ~/git/freeems-loader/src
-	\$ qmake && make all
+\item \textsf{Give the Volume Group a name. Any name will do. The shorter the better. Capitalization is optional.  I called mine "HU", Click Continue.}
+ 
+\item \textsf{These are all the partitions on the disk. Which one will be made a member of the VG? Only a Physical Volume qualifies to be included in a VG. In this example, that will be /dev/sda6, the Physical Volume that was created earlier. Select /dev/sda6 and Click Continue.}
+ 
+\item \textsf{The Volume Group has been created.} 
 
-T. Create a Gnome menu item for FreeEMS-Loader:
-	Click on System>Preferences>Main Menu
-	Click on the "New Menu" button and call the new menu "FreeEMS".
+\item \textsf{The next task is to create Logical Volumes, which are the equivalents of disk partitions. For this example, only two Logical Volumes will be created: / and swap. You can create more if you like, but for a desktop system, those two should be all you need to create during installation.} 
 
-U. Create an application called "FreeEMS-Loader":
-	Click on "FreeEMS" and then click on the "New Item" button,
-	The Type is "Application", for the Name type in "FreeEMS-Loader" and browse for 
-	"~/git/freeems-loader/src/Freeems-Loader", then click OK.
+\item \textsf{Click on "Create logical volume" and click Continue.}
+ 
+\item \textsf{The first step in creating a Logical Volume (LV), is to identify the Volume Group the disk space for the LV will be taken from. Click on "HU" and click Continue.} 
 
-V. Compile MegaTunix:
-	\$ cd ~/git/MegaTunix
-	\$ ./autogen.sh
-	\$ make
-	\$ sudo make install
-	\$ sudo /sbin/ldconfig
+\item \textsf{The first LV will be for /. Like the VG’s name, the names for the LVs can be anything you feel comfortable with. For ease of management, it is better to use a name that reminds you of the mount point of the LV). I like to name the LV that will be used for / as "root" and "swap" for that which will be used for swap.} 
+
+\item \textsf{Name the Logical Volume "root". Click Continue.} 
+
+\item \textsf{How much disk space should be allocated to this "root" LV? I used 494 GB for the / partition. Click Continue.} 
+
+\item \textsf{Click on "Create logical volume" and click Continue.}
+ 
+\item \textsf{Name the Logical Volume "swap". Click Continue.} 
+
+\item \textsf{How much disk space should be allocated to this "swap" LV? I used the remainder of the FREE SPACE (14 GB) for the swap partition. Click Continue.} 
+
+\item \textsf{Scroll to “Finish.” Click Continue.} 
+
+\item \textsf{The last task in creating LVs is to specify a file system and mount points. So, select the first (largest) LV, and click Continue.} 
+
+\item \textsf{Scroll to “Use as” to specify a file system for the / partition. The default on Debian 6 is "Ext3 journaling file system". You can stick with that or choose any other available journaling file system. Click Continue.}
+ 
+\item \textsf{Scroll to “Mount point” and choose the mount point of "/" for the LV. Then scroll to “Done setting up the partition.” Click Continue.} 
+
+\item \textsf{Select the second (smallest) LV, and Click Continue.} 
+
+\item \textsf{Scroll to “Use as” to specify "swap". Click Continue.}
+
+\item \textsf{Scroll to “Done setting up the partition.” Continue.} 
+
+\item \textsf{Scroll to “Finish partitioning and write changes to disk.”  Click Continue.} 
+
+\item \textsf{Debian 6/Ubuntu 11 uses GRUB 2 as the bootloader, and will attempt to install it on the Master Boot Record (MBR) of the hard disk. Note, however, that installing GRUB in the MBR when you are attempting to dual-boot with Windows will overwrite Windows boot files. This is not the recommended approach. It is better to install it in the boot partition of the Debian installation. So, select "No" and click Continue.} 
+
+\item \textsf{All the steps involved in this tutorial are important, but this one is especially so. Remember the partition number of the boot partition? For this example, the boot partition is /dev/sda5. The partition number is, therefore, 5. The device to specify for installing GRUB, in GRUB’s syntax, is (hd0,5). The 0 is the first hard disk and the 5, the partition number. Click Continue.}
+
+\item \textsf{Continue with the rest of the installation. When completed, the system will reboot into Windows. This is expected.}
+ 
+\item \textsf{The final task is to add an entry for Debian 6 in Windows’ boot menu. The easiest tool I know of to do that is EasyBCD, a free application from NeoSmart Technologies. You may download the latest version here:} \newline 
+      \url{http://neosmart.net/dl.php?id=1} 
+      
+\item \textsf{Install EasyBCD and launch it.}
+ 
+\item \textsf{This is the main tab of EasyBCD. It shows the only entry in the boot menu. Click on Add New Entry.} 
+
+\item \textsf{On the Add New Entry tab, click on the Linux/BSD tab in the upper part of the window. Debian 6 uses GRUB 2, so select “GRUB 2″ from the Type menu. Edit the Name field to Debian, then click on the Add Entry button. Click on Edit boot Menu.}
+ 
+\item \textsf{Here are the two entries. Windows is the default. You can change the order if you want to. Exit EasyBCD and reboot.} 
+
+\item \textsf{To be sure that it works, boot into Debian. It should if you followed all the steps as suggested. Note that if you attempt to boot into Debian, you will next encounter the GRUB menu.}
+\end{enumerate}
+
+\chapter{\textsf{Install Linux Libraries and Programs}}
+
+\begin{enumerate}
+\item \textsf{From a Root Terminal, edit \path{/etc/apt/sources.list} and add:} \newline
+	\textsf{For 32bit OS:} \newline
+\texttt{\# FreeEMS Toolchain} \newline
+\texttt{deb http://debs.diyefi.org css-debs binary}
+
+\item \textsf{From a Root Terminal, edit \path{/etc/sudoers} and add your user under root.}
+
+\item \textsf{From a Root Terminal, edit /etc/group and add your username to:} \newline
+      \texttt{tty, dialout, sudo, operator, users, iocard and staff} \newline
+      \textsf{You may not have all of these, only add your username after the groups that exist on your system.}
+
+\item \textsf{This will require a reboot to assign the permissions, so do that now.}
+
+\item \textsf{Open a Terminal window (not a Root Terminal) and update apt's database and install upgraded system files:} \newline
+      \texttt{\$ sudo apt-get update} \newline
+      \texttt{\$ sudo apt-get upgrade}
+
+\item \textsf{Install the tools necessary for MegaTunix:} \newline
+      \texttt{\$ sudo apt-get install pkg-config libtool intltool libgtkglext1-dev g++ gcc flex} \newline
+      \texttt{\$ sudo apt-get install bison glade libglade2-dev make git-core gdb automake1.9}
+
+\item \textsf{Install the FreeEMS Toolchain so you can compile the firmware:} \newline
+      \texttt{\$ sudo apt-get install freeems-toolchain cutecom}
+
+\item \textsf{Install linux-headers:} \newline
+      \texttt{\$ sudo apt-get install linux-headers-2.6.32-5-686}
+\end{enumerate}
+
+\chapter{\textsf{Install Essential Programs}}
+
+\begin{enumerate}
+\item \textsf{Install QT4} \newline
+      \texttt{\$ sudo apt-get update \&\& sudo apt-get install qt4-qmake libqt4-dev}
+
+\item \textsf{Now the system should be ready to compile MegaTunix, FreeEMS, FreeEMS-Loader and qserialport!}
+
+\item \textsf{Create a git directory in your home directory:} \newline
+      \texttt{\$ mkdir \~/git}
+
+\item \textsf{Change to your new git directory:} \newline
+      \texttt{\$ cd \~/git}
+
+\item \textsf{Clone the git repositories for qserialport, freeems-loader, MegaTunix and freeems-vanilla} \newline
+      \texttt{\$ git clone git://gitorious.org/inbiza-labs/qserialport.git} \newline
+      \texttt{\$ git clone git://github.com/seank/freeems-loader.git} \newline
+      \texttt{\$ git clone git://github.com/djandruczyk/MegaTunix.git} \newline
+      \texttt{\$ git clone git://github.com/fredcooke/freeems-vanilla.git} \newline
+      \newline
+      \textsf{This creates a directory within the git directory named after each repository such as:} \newline
+      \texttt{\~/git/qserialport} \newline	
+      \texttt{\~/git/freeems-loader} \newline
+      \texttt{\~/git/MegaTunix} \newline
+      \texttt{\~/git/freeems-vanilla}
+
+\item \textsf{Start with qserialport since we need it for SeanK's freeems-loader to communicate with the serial port:} \newline
+      \texttt{\$ cd \~/git/qserialport} \newline
+      \texttt{\$ ./configure} \newline
+      \texttt{\$ make} \newline
+      \texttt{\$ sudo make install} \newline
+      \texttt{\$ sudo /sbin/ldconfig} \newline
+\end{enumerate}
+
+\chapter{\textsf{FreeEMS-Loader}}
+
+\textsf{FreeEMS-Loader is the program you will use to load the freeems-vanilla firmware onto your FreeEMS based engine management system, so here are the instructions of how to compile and install this program.} \newline
+
+\begin{enumerate}
+\item \textsf{Make sure your freeems-loader git clone is up to date by excuting the following:} \newline
+      \texttt{\$ cd \~/git/freeems-loader} \newline
+      \texttt{\$ git pull}
+
+\item \textsf{Next compile freeems-loader:} \newline
+      \texttt{\$ cd \~/git/freeems-loader/src} \newline
+      \texttt{\$ qmake \&\& make all}
+
+\item \textsf{Create a Gnome menu item for FreeEMS-Loader:} \newline
+      \textsf{Click on } \texttt{System -> Preferences -> Main Menu} \newline
+      \textsf{Click on the "New Menu" button and call the new menu "FreeEMS".}
+
+\item \textsf{Create an application called "FreeEMS-Loader":} \newline
+      \textsf{Click on "FreeEMS" and then click on the "New Item" button,} \newline
+      \textsf{The Type is "Application", for the Name type in "FreeEMS-Loader" and browse for} \newline
+      \texttt{\~/git/freeems-loader/src/Freeems-Loader} \textsf{, then click OK.}
+\end{enumerate}
+
+\chapter{\textsf{Install MegaTunix}}
+
+\textsf{MegaTunix is the tuning program you will use to make changes to your FreeEMS based engine management system so here are the instructions on how to install and run this program.} \newline
+
+\begin{enumerate}
+\item \textsf{Make sure your MegaTunix git clone is up to date by excuting the following:} \newline
+      \texttt{\$ cd ~/git/Megatunix} \newline
+      \texttt{\$ git pull}
+
+\item \textsf{Now compile MegaTunix:} \newline
+      \texttt{\$ cd ~/git/MegaTunix} \newline
+      \texttt{\$ ./autogen.sh} \newline
+      \texttt{\$ make} \newline
+      \texttt{\$ sudo make install} \newline
+      \texttt{\$ sudo /sbin/ldconfig} \newline
+\end{enumerate}
 
 W. Compile FreeEMS Firmware:
-	\$ cd ~/git/freeems-vanilla/src
+      \$ cd ~/git/freeems-vanilla/src
 	make s19
 
 X. FreeEMS firmware can be found at:
-	\$ cd ~/git/freeems-vanilla/src/firmware
+      \$ cd ~/git/freeems-vanilla/src/firmware
 
 Y. freeems.serial.monitor.s19 is located in:
-	~/git/freeems-vanilla/lib
+      ~/git/freeems-vanilla/lib
 
 Z. Install libusb:
-	\$ sudo apt-get install libusb-0.1.4 libusb-1.0-0 libusb-1.0-0-dev libusb-dev
+      \$ sudo apt-get install libusb-0.1.4 libusb-1.0-0 libusb-1.0-0-dev libusb-dev
 
 AA. To get libusb devices to run without being "root":
 1. Plug in your USB device and run:
@@ -252,16 +363,16 @@ EOF
 
 BB. Download hcs12mem from:
 	http://sourceforge.net/projects/hcs12mem/files/latest/download
-	I have not been able to get hcs12mem to program the freeems.serial.monitor.s19 file onto a blank 	HC12S(X) MCU as of the writing of this how-to.  This is considered a work in progress.
+	I have not been able to get hcs12mem to program the freeems.serial.monitor.s19 file onto a blank HC12S(X) MCU as of the writing of this how-to.  This is considered a work in progress.
 1. Install hcs12mem-1.4.1-linux.deb with GDebi Package Installer. This file will be located in ~/Downloads/
 
 CC. Copy the Freescale mc9s12xdp512.dat file to the library for hcs12mem:
-	\$ sudo cp ~/git/freeems-vanilla/bin/mc9s12xdp512.dat /usr/local/share/hcs12mem/mc9s12xdp512.dat
+      \$ sudo cp ~/git/freeems-vanilla/bin/mc9s12xdp512.dat /usr/local/share/hcs12mem/mc9s12xdp512.dat
 
 DD. Connect the TBDML USB programmer to the USB port of your PC and connect the BDM cable to the BDM connector on the Freescale Microprocessor (MCU).  The TBDML adapter is only used to program the Serial Monitor program onto the Freescale Microprocessor so that we can communicate with either the FreeEMS-Loader or the MegaTunix-Loader.
 
 EE. Test hcs12mem operation to query the Freescale MCU:
-	\$ hcs12mem -i tbdml -t mc9s12xdp512
+      \$ hcs12mem -i tbdml -t mc9s12xdp512
 
 	You should see output like this:
 	andy@DeuceEMS:~/hcs12mem\$ hcs12mem -i tbdml -t mc9s12xdp512
@@ -286,7 +397,7 @@ EE. Test hcs12mem operation to query the Freescale MCU:
 	S12X FLASH block <3> protection all <off> high area <2kB> low area <off>
 
 FF. Test Erasing the entire Flash memory to default the Freescale MCU:
-	\$ hcs12mem -i tbdml -t mc9s12xdp512 –flash-erase-unsecure 
+      \$ hcs12mem -i tbdml -t mc9s12xdp512 –flash-erase-unsecure
 ***If you run this command and the CPU goes into Secured mode.  Boot into Windows 7 and run “HiWave Debugger” and Unsecure the CPU. 
 
 GG. I used a TBDML to connect the MCU to the HiWave Debugger, I have included a link to my github repository where you can find the information to make your own as well as the driver for Windows XP 32-bit, Vista 32-bit and Windows 7 32-bit editions.
