@@ -16,14 +16,14 @@
 \centerline{\textbf{\textsf{This document assumes you are starting with a blank hard drive.}}} 
 \centerline{\textbf{\textsf{\textcolor{red}{This means NO OPERATING SYSTEM}.}}}
 \\
-\textcolor{white}{xyz}
+\textcolor{white}{\textsf{xyz}}
 \\
 \centerline{\textbf{\textsf{Make sure you start with Chapter 1, Step 1 and do not skip any steps.}}}
 \centerline{\textbf{\textsf{\textcolor{red}{They are in this order for a reason!}}}}
 \\
-\textcolor{white}{xyz2}
+\textcolor{white}{\textsf{xyz2}}
 \\
-\textsf{The purpose of this document is to describe how to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows and either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot) Linux for the average computer user.  The author assumes that the user has installed Windows at least one or more times as instructions for the exact process of installing Windows will not be shown.} \newline
+\textsf{The purpose of this document is to describe how to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows and Debian 6 (Squeeze) Linux for the average computer user.  The author assumes that the user has installed Windows at least one or more times as instructions for the exact process of installing Windows will not be shown.} \newline
 \\
 \textsf{Please read through the ENTIRE document before beginning the installation process to make sure you fully understand each step of the process.  The author is not responsible for any actions resulting from you the user following the instruction contained in this HowTo. This is a free world with no strings attached and YOU are responsible for YOUR actions.} \newline
 \\
@@ -31,6 +31,12 @@
 \\
 \textsf{I am only your guide, you must make the decision to take the red pill or blue pill...} \newline
 \textsf{So if you decide to take the red pill and follow the white rabbit to the land of penguins...} \newline
+
+\pagebreak 
+
+\tableofcontents
+
+\newpage 
 
 \chapter{\textsf{Step 1:  Install Windows and Apps}}
 \begin{enumerate}
@@ -106,46 +112,48 @@
 \end{enumerate}
 
 \chapter{\textsf{Step 2: Download and create Linux boot media}} 
-\textsf{In this step you will need to download and create the appropriate boot media for either Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot).
+\textsf{In this step you will need to download and create the appropriate boot media for Debian 6 (Squeeze).
 You have a couple of options here, you can either go the route of Method \#1: (download a .iso file and make a CD to boot from) or you can follow Method \#2 (use unetbootin to make a bootable USB Thumb drive).} \newline
 
 \begin{enumerate}
-\item \textsf{Download a disk image .iso file of your Linux distribution of choice, here are a few links:} \newline
-\textsf{Debian 32bit CD/DVD images:} \newline
-\url{http://cdimage.debian.org/debian-cd/6.0.4/i386/iso-cd/}\newline
-\textsf{Debian 64bit CD/DVD images:} \newline
-\url{http://cdimage.debian.org/debian-cd/6.0.4/amd64/iso-cd/}\newline
-\textsf{Ubuntu 32bit CD/DVD images:} \newline
-\url{http://releases.ubuntu.com/11.10/ubuntu-11.10-desktop-i386.iso} \newline
-\textsf{Ubuntu 64bit CD/DVD images:} \newline
-\url{http://releases.ubuntu.com/11.10/ubuntu-11.10-desktop-amd64.iso} \newline
-\newline
+\item \textsf{Download a disk image .iso file of your Linux distribution of choice, here are a few links:} 
+
+\begin{list}{•}{•}
+\item \textsf{Debian 32bit CD/DVD images:} \newline
+\url{http://cdimage.debian.org/debian-cd/6.0.4/i386/iso-cd/}
+\item \textsf{Debian 64bit CD/DVD images:} \newline
+\url{http://cdimage.debian.org/debian-cd/6.0.4/amd64/iso-cd/}
+\end{list}
+
+
 \textsf{With any of the above .iso files use the CD burning software of your choice to make a bootable CD-ROM to launch the installer. Or you can also use unetbootin as in Method \#2 and follow these directions:} \newline
 \url{http://unetbootin.sourceforge.net/#other} \newline
 \textsf{to create a bootable USB Thumb drive from the .iso file that you downloaded.}
 
 \item \textsf{Download unetbootin from:} \newline
 \url{http://unetbootin.sourceforge.net/unetbootin-windows-latest.exe}\newline
-\textsf{Run the unetbootin-windows-latest.exe file while the computer is running from its Windows 7 partition and follow the instructions at:} \newline
+\textsf{Run the unetbootin-windows-latest.exe file while the computer is running from its Windows partition and follow the instructions at:} \newline
 \url{http://unetbootin.sourceforge.net/#install} \newline
-\textsf{to create a bootable Debian 32bit or Ubuntu 32bit USB thumb drive.}
+\textsf{to create a bootable Debian 32bit or Debian 64bit USB Thumb drive.}
 \end{enumerate}
 
 \chapter{\textsf{Install Linux}}
 
-\textsf{Insert the boot media you created in Chapter 2 to install Debian 6 (Squeeze) or Ubuntu 11.10 (Oneiric Ocelot) on the remaining ~500 Gb HDD space.  Now reboot your computer making sure to choose the boot media you just created.} \newline
+\textsf{Insert the boot media you created in Chapter 2 to install Debian 6 (Squeeze) on the remaining ~500 Gb HDD space.  Now reboot your computer making sure to choose the boot media you just created.} \newline
 
 \begin{enumerate}
 \item \textsf{To reduce reduce the number of steps, this example begins at the step where disk detection starts after you have gone through the basic steps of the graphical installer. 
 Select “Manual.”  Click Continue.}
 
-\item \textsf{Here, the installer should show the 2 existing NTFS (Windows 7) partitions. As you can see, there is free, or unallocated space. Select FREE SPACE, then click Continue.}
+\item \textsf{Here, the installer should show either 1 NTFS partition for Windows XP or the 2 NTFS partitions for (Windows Vista or Windows 7) . As you can see, there is free, or unallocated space. Select FREE SPACE, then click Continue.}
 
 \item \textsf{Scroll to “Create a new partition.” Continue.} 
 
 \item \textsf{By default the /boot partition on Debian 6 is allocated a disk space of about 250 MB. Most Linux distributions use 500 MB. I think 1000 MB will do just fine for my system. Continue.}
 
-\item \textsf{In Linux, you cannot create more than four primary partitions. And since we already have two primary partitions (for Windows 7), the installer will by default want to create the first and subsequent Debian partitions as logical partitions. The partition numbers will, therefore, start at 5. The boot partition, which is the first one we are creating, will be /dev/sda5. Note this carefully, because GRUB will be installed on this partition for reasons that I will explain when we get to that step. Click Continue.}
+\item \textsf{If you are installing Debian to dual boot with Windows XP, you do not need to follow any further steps until step 49 so you can skip to step 49 now.  If you are installing Debian to dual boot with Windows Vista or Windows 7, continue to the next step.}
+
+\item \textsf{In Linux, you cannot create more than four primary partitions. And since we already have two primary partitions (for Windows Vista or Windows 7), the installer will by default want to create the first and subsequent Debian partitions as logical partitions. The partition numbers will, therefore, start at 5. The boot partition, which is the first one we are creating, will be /dev/sda5. Note this carefully, because GRUB will be installed on this partition for reasons that I will explain when we get to that step. Click Continue.}
 
 \item \textsf{Click on Logical. Click Continue.}
 
@@ -230,13 +238,32 @@ Select “Manual.”  Click Continue.}
  
 \item \textsf{Here are the two entries. Windows is the default. You can change the order if you want to. Exit EasyBCD and reboot.} 
 
-\item \textsf{To be sure that it works, boot into Debian. It should if you followed all the steps as suggested. Note that if you attempt to boot into Debian, you will next encounter the GRUB menu.}
+\item \textsf{To be sure that it works, boot into Debian. It should prompt you to boot either Windows Vista or Windows 7 if you followed all the steps above. Note that if you attempt to boot into Debian, you will next encounter the GRUB menu.  If you were able to boot into Windows Vista or Windows 7 then you are done with this chapter, continue to chapter 4 to install the Linux libraries and programs.}
+
+\item \textsf{For a dual boot Debian and Windows XP when the installation prompts you to install the GRUB bootloader, allow it to be installed in the Master Boot Record (MBR).}
+
+\item \textsf{Reboot your computer when the Debian install is complete.}
+
+\item \textsf{Notice that when the computer restarts you are presented with the GRUB bootloader and only the Debian choices are available.  Let it boot into the default Debian instance and we will add Windows XP to the boot loader in the next step.}
+
+\item \textsf{Open a terminal and type the following}
+      \begin{enumerate}
+      \item \texttt{\$ sudo grub-mkdevicemap}
+      \item \texttt{\$ sudo update-grub2}
+      \end{enumerate}
+      
+\item \textsf{Reboot your computer.}
+
+\item \textsf{Notice that when the computer restarts you are presented with the GRUB bootloader and now the Debian choices are available along with Microsoft Windows XP.}
+
+\item \textsf{Your installation of both operating systems is now complete.  At this point you should test and make sure that you can boot into both operating systems before continuing.}
 \end{enumerate}
 
 \chapter{\textsf{Install Linux Libraries and Programs}}
 
 \begin{enumerate}
-\item \textsf{From a Root Terminal, edit \path{/etc/apt/sources.list} and add:} \newline
+\item \textsf{Boot into Debian 6.}
+\item \textsf{Open a Root Terminal, edit \path{/etc/apt/sources.list} and add:} \newline
 	\textsf{For 32bit OS:} \newline
 \texttt{\# FreeEMS Toolchain} \newline
 \texttt{deb http://debs.diyefi.org css-debs binary}
@@ -281,11 +308,11 @@ Select “Manual.”  Click Continue.}
 
 \item \textsf{Create a git directory in your home directory:} \newline
       \textsf{In the same Terminal window, type:} \newline
-      \texttt{\$ mkdir \~/git}
+      \texttt{\$ mkdir }\PVerb{~/git}
 
 \item \textsf{Change to your new git directory:} \newline
       \textsf{In the same Terminal window, type:} \newline
-      \texttt{\$ cd \~/git}
+      \texttt{\$ cd } \PVerb{~/git}
 
 \item \textsf{Clone the git repositories for qserialport, freeems-loader, MegaTunix and freeems-vanilla} \newline
       \textsf{In the same Terminal window, type:} \newline
@@ -295,14 +322,14 @@ Select “Manual.”  Click Continue.}
       \texttt{\$ git clone git://github.com/fredcooke/freeems-vanilla.git} \newline
       \newline
       \textsf{This creates a directory within the git directory named after each repository such as:} \newline
-      \texttt{\~/git/qserialport} \newline	
-      \texttt{\~/git/freeems-loader} \newline
-      \texttt{\~/git/MegaTunix} \newline
-      \texttt{\~/git/freeems-vanilla}
+      \PVerb{~/git/qserialport} \newline	
+      \PVerb{~/git/freeems-loader} \newline
+      \PVerb{~/git/MegaTunix} \newline
+      \PVerb{~/git/freeems-vanilla}
 
 \item \textsf{Start with qserialport since we need it for SeanK's freeems-loader to communicate with the serial port:} \newline
       \textsf{In the same Terminal window, type:} \newline
-      \texttt{\$ cd \~/git/qserialport} \newline
+      \texttt{\$ cd } \PVerb{~/git/qserialport} \newline
       \texttt{\$ ./configure} \newline
       \texttt{\$ make} \newline
       \texttt{\$ sudo make install} \newline
@@ -316,12 +343,12 @@ Select “Manual.”  Click Continue.}
 \begin{enumerate}
 \item \textsf{Make sure your freeems-loader git clone is up to date by excuting the following:} \newline
       \textsf{Open a Terminal window and type:} \newline
-      \texttt{\$ cd \~/git/freeems-loader} \newline
+      \texttt{\$ cd } \PVerb{~/git/freeems-loader} \newline
       \texttt{\$ git pull}
 
 \item \textsf{Next compile freeems-loader:} \newline
       \textsf{In the same Terminal window, type:} \newline
-      \texttt{\$ cd \~/git/freeems-loader/src} \newline
+      \texttt{\$ cd } \PVerb{~/git/freeems-loader/src} \newline
       \texttt{\$ qmake \&\& make all}
 
 \item \textsf{Create a Gnome menu item for FreeEMS-Loader:} \newline
@@ -331,7 +358,7 @@ Select “Manual.”  Click Continue.}
 \item \textsf{Create an application called "FreeEMS-Loader":} \newline
       \textsf{Click on "FreeEMS" and then click on the "New Item" button,} \newline
       \textsf{The Type is "Application", for the Name type in "FreeEMS-Loader" and browse for} \newline
-      \texttt{\~/git/freeems-loader/src/Freeems-Loader} \textsf{, then click OK.}
+      \PVerb{~/git/freeems-loader/src/Freeems-Loader} \textsf{, then click OK.}
 \end{enumerate}
 
 \chapter{\textsf{Install MegaTunix}}
@@ -341,12 +368,12 @@ Select “Manual.”  Click Continue.}
 \begin{enumerate}
 \item \textsf{Make sure your MegaTunix git clone is up to date by excuting the following:} \newline
       \textsf{Open a Terminal window and type:} \newline
-      \texttt{\$ cd \~/git/Megatunix} \newline
+      \texttt{\$ cd } \PVerb{~/git/Megatunix} \newline
       \texttt{\$ git pull}
 
 \item \textsf{Now compile MegaTunix:} \newline
       \textsf{In the same Terminal window, type:} \newline
-      \texttt{\$ cd \~/git/MegaTunix} \newline
+      \texttt{\$ cd } \PVerb{~/git/MegaTunix} \newline
       \texttt{\$ ./autogen.sh} \newline
       \texttt{\$ make} \newline
       \texttt{\$ sudo make install} \newline
@@ -360,19 +387,19 @@ Select “Manual.”  Click Continue.}
 \begin{enumerate}
 \item \textsf{Make sure your freeems-vanilla git clone is up to date by excuting the following:} \newline
       \textsf{Open a Terminal window and type:} \newline
-      \texttt{\$ cd \~/git/freeems-vanilla} \newline
+      \texttt{\$ cd } \PVerb{~/git/freeems-vanilla} \newline
       \texttt{\$ git pull}
 
 \item \textsf{Build the FreeEMS Firmware:} \newline
       \textsf{In the same Terminal window and type:} \newline
-      \texttt{\$ cd \~/git/freeems-vanilla/src} \newline
+      \texttt{\$ cd } \PVerb{~/git/freeems-vanilla/src} \newline
       \texttt{\$ make s19}
 
 \item \textsf{Your newly built FreeEMS firmware can be found in:} \newline
-      \texttt{\$ cd \~/git/freeems-vanilla/src/firmware}
+      \texttt{\$ cd } \PVerb{~/git/freeems-vanilla/src/firmware}
 
 \item \textsf{freeems.serial.monitor.s19 is located in:} \newline
-      \texttt{\$ cd \~/git/freeems-vanilla/lib}
+      \texttt{\$ cd } \PVerb{~/git/freeems-vanilla/lib}
 \end{enumerate}
 
 \chapter{\textsf{Set User Permission to USB Device}}
@@ -415,82 +442,129 @@ Select “Manual.”  Click Continue.}
 
 \end{enumerate}
 
+\chapter{\textsf{hcs12mem}}
+\textsf{In this chapter we will download and test hcs12mem a Freescale HCS12 flashing utility.} \newline
 
-BB. Download hcs12mem from:
-	http://sourceforge.net/projects/hcs12mem/files/latest/download
-	I have not been able to get hcs12mem to program the freeems.serial.monitor.s19 file onto a blank HC12S(X) MCU as of the writing of this how-to.  This is considered a work in progress.
-1. Install hcs12mem-1.4.1-linux.deb with GDebi Package Installer. This file will be located in ~/Downloads/
+\begin{enumerate}
+\item \textsf{Download hcs12mem from:} \newline
+      \url{http://sourceforge.net/projects/hcs12mem/files/latest/download} \newline
+      \textsf{I have not been able to get hcs12mem to program the freeems.serial.monitor.s19 file onto a blank HC12S(X) MCU as of the writing of this how-to.  This is considered a work in progress.} 
 
-CC. Copy the Freescale mc9s12xdp512.dat file to the library for hcs12mem:
-      \$ sudo cp ~/git/freeems-vanilla/bin/mc9s12xdp512.dat /usr/local/share/hcs12mem/mc9s12xdp512.dat
+\item \textsf{Install hcs12mem-1.4.1-linux.deb with GDebi Package Installer. This file will be located in} \newline
+      \PVerb{~/Downloads/}
 
-DD. Connect the TBDML USB programmer to the USB port of your PC and connect the BDM cable to the BDM connector on the Freescale Microprocessor (MCU).  The TBDML adapter is only used to program the Serial Monitor program onto the Freescale Microprocessor so that we can communicate with either the FreeEMS-Loader or the MegaTunix-Loader.
+\item \textsf{Copy the Freescale mc9s12xdp512.dat file to the library for hcs12mem:} \newline
+      \texttt{\$ sudo cp } \PVerb{~/git/freeems-vanilla/bin/mc9s12xdp512.dat /usr/local/share/hcs12mem/mc9s12xdp512.dat}
 
-EE. Test hcs12mem operation to query the Freescale MCU:
-      \$ hcs12mem -i tbdml -t mc9s12xdp512
+\item \textsf{Connect the TBDML USB programmer to the USB port of your PC and connect the BDM cable to the BDM connector on the Freescale Microprocessor (MCU).  The TBDML adapter is only used to program the Serial Monitor program onto the Freescale Microprocessor so that we can communicate with either the FreeEMS-Loader or the MegaTunix-Loader.}
 
-	You should see output like this:
-	andy@DeuceEMS:~/hcs12mem\$ hcs12mem -i tbdml -t mc9s12xdp512
-	hcs12mem: Freescale S12 MCU memory loader V1.4.1 (C) 2005-2007 Michal Konieczny 	<mk@cml.mfk.net.pl>
+\item \textsf{Test hcs12mem operation to query the Freescale MCU:} \newline
+      \texttt{\$ hcs12mem -i tbdml -t mc9s12xdp512} \newline
+      \\
+      \textsf{You should see output like this:} \newline
+      \texttt{andy@DeuceEMS:~/hcs12mem\$ hcs12mem -i tbdml -t mc9s12xdp512} \newline
+      \texttt{hcs12mem: Freescale S12 MCU memory loader V1.4.1 (C) 2005-2007 Michal Konieczny 	<mk@cml.mfk.net.pl>} \newline
+      \\
+      \texttt{target info <single chip MC9S12XDP512 MCU>} \newline
+      \texttt{target mcu <MC9S12XDP512> family <S12X>} \newline
+      \texttt{USB device USB version <1.1> VID <0x0425> PID <0x1000> device release <0.0.1>} \newline
+      \texttt{USB device manufacturer <Freescale> product <TurboBDM Light v0.1>} \newline
+      \texttt{USB device config <\#1> power <bus> max current <300mA>} \newline
+      \texttt{TBDML hardware version <1.0> firmware version <0.3>} \newline
+      \texttt{TBDML detected target frequency <16.000 MHz>} \newline
+      \texttt{BDM status <enabled,active,secured> clock <bus>} \newline
+      \texttt{S12X part id <0xC410> family <XD> memory <512kB> mask <1.0>} \newline
+      \texttt{S12X part security <unsecured> backdoor key <enabled>} \newline
+      \texttt{S12X register space <2kB> address range <0x0000-0x07FF>} \newline
+      \texttt{S12X RAM size <32kB> space <12kB> address range <0x1000-0x3FFF>} \newline
+      \texttt{S12X FLASH module <FTX512K4> size <512kB> state <enabled> ROMHM <no>} \newline
+      \texttt{S12X FLASH block <0> protection all <off> high area <2kB> low area <off>} \newline
+      \texttt{S12X FLASH block <1> protection all <off> high area <2kB> low area <off>} \newline
+      \texttt{S12X FLASH block <2> protection all <off> high area <2kB> low area <off>} \newline
+      \texttt{S12X FLASH block <3> protection all <off> high area <2kB> low area <off>} \newline
 
-	target info <single chip MC9S12XDP512 MCU>
-	target mcu <MC9S12XDP512> family <S12X>
-	USB device USB version <1.1> VID <0x0425> PID <0x1000> device release <0.0.1>
-	USB device manufacturer <Freescale> product <TurboBDM Light v0.1>
-	USB device config <#1> power <bus> max current <300mA>
-	TBDML hardware version <1.0> firmware version <0.3>
-	TBDML detected target frequency <16.000 MHz>
-	BDM status <enabled,active,secured> clock <bus>
-	S12X part id <0xC410> family <XD> memory <512kB> mask <1.0>
-	S12X part security <unsecured> backdoor key <enabled>
-	S12X register space <2kB> address range <0x0000-0x07FF>
-	S12X RAM size <32kB> space <12kB> address range <0x1000-0x3FFF>
-	S12X FLASH module <FTX512K4> size <512kB> state <enabled> ROMHM <no>
-	S12X FLASH block <0> protection all <off> high area <2kB> low area <off>
-	S12X FLASH block <1> protection all <off> high area <2kB> low area <off>
-	S12X FLASH block <2> protection all <off> high area <2kB> low area <off>
-	S12X FLASH block <3> protection all <off> high area <2kB> low area <off>
+\item \textsf{Test Erasing the entire Flash memory to default the Freescale MCU:} \newline
+      \texttt{\$ hcs12mem -i tbdml -t mc9s12xdp512 –flash-erase-unsecure} \newline
+      \textsf{***If you run this command and the CPU goes into Secured mode.  Boot into Windows and run “HiWave Debugger” and Unsecure the CPU.} 
 
-FF. Test Erasing the entire Flash memory to default the Freescale MCU:
-      \$ hcs12mem -i tbdml -t mc9s12xdp512 –flash-erase-unsecure
-***If you run this command and the CPU goes into Secured mode.  Boot into Windows 7 and run “HiWave Debugger” and Unsecure the CPU. 
+\end{enumerate}
 
-GG. I used a TBDML to connect the MCU to the HiWave Debugger, I have included a link to my github repository where you can find the information to make your own as well as the driver for Windows XP 32-bit, Vista 32-bit and Windows 7 32-bit editions.
-1. Download my TBDML-12f-GPL repository from https://github.com/DeuceEFI/TBDML-12f-GPL
-2. Follow the instructions in Daniel Malík's instructional PDF to build a TBDML and install the included 32-bit driver.
+\chapter{\textsf{Build a TBDML}}
 
-HH. Program the Freescale MCU with the Serial Monitor program by:
-1. Boot back into Windows 7 and run HiWave - Debugger
-2. Click on TDBML HCS12
-3. Click on Unsecure
-4. Click on TDBML HCS12
-5. Click on Flash
-6. Click on Load
-7. Choose “freeems.serial.monitor.s19”, click on Open. 
-8. Click on Close.
+\textsf{I used a TBDML to connect the MCU to the HiWave Debugger, I have included a link to my github repository where you can find the information to make your own as well as the driver for Windows XP 32-bit, Vista 32-bit and Windows 7 32-bit editions.} \newline
 
-II. Reset the Freescale MCU to Normal Mode:
-1. Click on TDBML HCS12
-2. Click on “Reset to Normal Mode”
-3. Exit HiWave Debugger.
+\begin{enumerate}
+\item \textsf{Clone my TBDML-12f-GPL repository from https://github.com/DeuceEFI/TBDML-12f-GPL}
 
-JJ. Boot back into Debian OR Ubuntu.
+\item \textsf{Follow the instructions in Daniel Malík's instructional PDF to build a TBDML and install the included 32-bit driver.}
+\end{enumerate}
 
-KK. Open cutecom, click on the “Hex Output” check box, to the right of “Send file...” button, make sure “Plain” is selected and in the other box make sure “LF line end” is selected.
-1. Set it up to use device /dev/ttyF0 or /dev/ttyS0 or /dev/ttyUSB0 (which ever you are using)
-2. The Serial Monitor uses 115200 baud, 8 data bits, 1 stop bit, no parity.
-3. Connect a serial cable to the FreeEMS MCU.
-4. Click “Open Device”, click on the “Send file...” button and select the file “serial.mon.reset”
-5. It should respond back with: e0 08 3e
-6. This means that the Serial Monitor program is running.  
-7. Close out of cutecom.
+\chapter{\textsf{Flashing the Freescale MCU}}
 
-LL. To load the FreeEMS firmware onto your MCU, open FreeEMS-Loader and do the following:
-1. Change the Run/Load switch to Load on the either the Technological Arts board and press the RESET button OR install the shorting jumper on the Load/Run header on the Jaguar PCB and power cycle the PCB to tell the Serial Monitor program to accept an incoming file. 
-2. In FreeEMS-Loader, click on the “Connect” button.
-3. Click on the “Open File” button, select the FreeEMS .s19 firmware file you want to load and click on the “Open” button.
-4. Click on the “Load” button.  It will now load the file onto the MCU.
-5. Click on the “Close/Rst” button.
-6. Close FreeEMS-Loader and remember to change the Load/Run switch back to Run on the TA board and press the RESET button or remove the Load/Run shorting jumper on the Jaguar PCB and power cycle the PCB.
+\textsf{In this chapter we will learn how to flash the Serial Monitor (SM) program onto your Freescale Microcontroller Unit.} \newline
+
+\begin{enumerate}
+
+\item \textsf{Boot into Windows.}
+
+\item \textsf{Connect the TBDML to your computer.}
+
+\item \textsf{Run the hiwave.exe shortcut you created in Chapter 1, Step 1, Instruction 5.}
+
+\item \textsf{Program the Freescale MCU with the Serial Monitor program by:} 
+      \begin{enumerate}
+      \item \textsf{Click on  \textbf{TDBML HCS12}}
+      \item \textsf{Click on  \textbf{Unsecure}}
+      \item \textsf{Click on  \textbf{TDBML HCS12}}
+      \item \textsf{Click on  \textbf{Flash}}
+      \item \textsf{Click on  \textbf{Load}}
+      \item \textsf{Choose \textbf{freeems.serial.monitor.s19}, click on Open.} 
+      \item \textsf{Click on Close.}
+      \end{enumerate}
+
+\item \textsf{Reset the Freescale MCU to Normal Mode:}
+      \begin{enumerate}
+      \item \textsf{Click on  \textbf{TDBML HCS12}}
+      \item \textsf{Click on \textbf{Reset to Normal Mode}}
+      \item \textsf{Exit HiWave Debugger.}
+      \end{enumerate}
+
+\end{enumerate}
+
+\chapter{\textsf{Test Serial Monitor}}
+
+\textsf{In this chapter we will learn how to test the Serial Monitor to make sure it is working properly.} \newline
+
+\begin{enumerate}
+\item \textsf{Boot back into Debian OR Ubuntu.}
+
+\item \textsf{Open \textbf{cutecom}, click on the \textbf{Hex Output} check box, to the right of \textbf{Send file...} button, make sure \textbf{Plain} is selected and in the other box make sure \textbf{LF line end} is selected.}
+
+      \begin{enumerate}
+      \item \textsf{Set it up to use device /dev/ttyF0 or /dev/ttyS0 or /dev/ttyUSB0 (which ever you are using)}
+      \item \textsf{The Serial Monitor uses 115200 baud, 8 data bits, 1 stop bit, no parity.}
+      \item \textsf{Connect a serial cable to the FreeEMS MCU.}
+      \item \textsf{Click \textbf{Open Device}, click on the \textbf{Send file...} button and select the file \textbf{serial.mon.reset}}
+      \item \textsf{It should respond back with: e0 08 3e}
+      \item \textsf{This means that the Serial Monitor program is running.}  
+      \item \textsf{Close out of \textbf{cutecom}.}
+      \end{enumerate}
+\end{enumerate}
+
+\chapter{\textsf{Load FreeEMS Firmware}}
+
+\textsf{In this chapter we will learn how to load the freeems-vanilla firmware onto your Freescale MCU using Sean's Freeems-Loader.  You will use this procedure to load any firmware files that you compile in the future onto the Freescale MCU.} \newline
+
+\begin{enumerate}
+\item \textsf{To load the FreeEMS firmware onto your MCU, open FreeEMS-Loader and do the following:}
+      \begin{enumerate}
+      \item \textsf{Change the Run/Load switch to Load on the either the Technological Arts board and press the RESET button OR install the shorting jumper on the Load/Run header on the Jaguar PCB and power cycle the PCB to tell the Serial Monitor program to accept an incoming file.} 
+      \item \textsf{In FreeEMS-Loader, click on the \textbf{Connect} button.}
+      \item \textsf{Click on the \textbf{Open File} button, select the FreeEMS .s19 firmware file you want to load and click on the \textbf{Open} button.}
+      \item \textsf{Click on the \textbf{Load} button.  It will now load the file onto the MCU.}
+      \item \textsf{Click on the \textbf{Close/Rst} button.}
+      \item \textsf{Close FreeEMS-Loader and remember to change the Load/Run switch back to Run on the TA board and press the RESET button or remove the Load/Run shorting jumper on the Jaguar PCB and power cycle the PCB.}
+      \end{enumerate}
+\end{enumerate}
 
 \end{document}
