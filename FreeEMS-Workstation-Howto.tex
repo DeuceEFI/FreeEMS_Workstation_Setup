@@ -9,7 +9,7 @@
 \evensidemargin=-0.35in
 \title{\textsf{FreeEMS Workstation HowTo}}
 \author{\textsf{Andy Goss}}
-\date{\textsf{02/21/2012}}
+\date{\textsf{05/20/2012}}
 \begin{document}
 \maketitle
 
@@ -23,7 +23,7 @@
 \\
 \textcolor{white}{\textsf{xyz2}}
 \\
-\textsf{The purpose of this document is to describe how to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows and Debian 6 (Squeeze) Linux for the average computer user.  The author assumes that the user has installed Windows at least one or more times as instructions for the exact process of installing Windows will not be shown.} \newline
+\textsf{The purpose of this document is to describe how to setup an Intel or AMD PC with 1 Tb HDD to Dual Boot Windows and Debian Testing (Wheezy) Linux for the average computer user.  The author assumes that the user has installed Windows at least one or more times as instructions for the exact process of installing Windows will not be shown.} \newline
 \\
 \textsf{Please read through the ENTIRE document before beginning the installation process to make sure you fully understand each step of the process.  The author is not responsible for any actions resulting from you the user following the instruction contained in this HowTo. This is a free world with no strings attached and YOU are responsible for YOUR actions.} \newline
 \\
@@ -50,12 +50,15 @@
 \item \textsf{Download PE Micro's free Unsecure-12 utility for the HCS12(X) MCUs in case you get the Freescale MCU stuck in a Secured state. You can download it here after you register for a free account:} \newline
 \url{https://www.pemicro.com/login.cfm?from_url=/downloads/download_file.cfm?download_id=16}
 
-\item \textsf{To use a TBDML debug module with the HiWave debugger then you can clone my github repository which contains the complete information on how to build one and program it along with the Windows 32-bit driver that works with WinXP, Vista and Windows.} 
+\item \textsf{To use a USBDM/TBDML debug module (USBDM is preferred) with the HiWave debugger then you can clone my github repository which contains the complete information on how to build one and program it along with the Windows 32-bit driver that works with WinXP, Vista and Windows.} 
 \begin{itemize}
       \item \textsf{Here is a link to my repository:} \newline
             \url{https://github.com/DeuceEFI/TBDML-12f-GPL}
-      \item \textsf{Once you plug in the TBDML device into the USB port on your computer, Windows will ask for the location of the driver.} 
-      \item \textsf{The Windows 32bit driver is located in the \PVerb{bin_tbdml_win_driver_11} directory}  
+            \url{https://github.com/DeuceEFI/USBDM}
+      \item \textsf{Once you plug in the USBDM/TBDML device into the USB port on your computer, Windows will ask for the location of the driver.} 
+      \item \textsf{The Windows 32bit driver for the USBDM is located in the \PVerb{USBDM Driver Installer} directory} 
+      \item \textsf{The Windows 32bit driver for the TBDML is located in the \PVerb{bin_tbdml_win_driver_11} directory} 
+       
 \end{itemize}
 
 \item \textsf{Search for and create a shortcut on your Desktop for hiwave.exe} 
@@ -112,17 +115,17 @@
 \end{enumerate}
 
 \chapter{\textsf{Step 2: Download and create Linux boot media}} 
-\textsf{In this step you will need to download and create the appropriate boot media for Debian 6 (Squeeze).
+\textsf{In this step you will need to download and create the appropriate boot media for Debian Testing (Wheezy) 32 bit.
 You have a couple of options here, you can either go the route of Method \#1: (download a .iso file and make a CD to boot from) or you can follow Method \#2 (use unetbootin to make a bootable USB Thumb drive).} \newline
 
 \begin{enumerate}
 \item \textsf{Download a disk image .iso file of your Linux distribution of choice, here are a few links:} 
 
 \begin{list}{•}{•}
-\item \textsf{Debian 32bit CD/DVD images:} \newline
-\url{http://cdimage.debian.org/debian-cd/6.0.4/i386/iso-cd/}
-\item \textsf{Debian 64bit CD/DVD images:} \newline
-\url{http://cdimage.debian.org/debian-cd/6.0.4/amd64/iso-cd/}
+\item \textsf{Debian Testing 32bit CD images:} \newline
+\url{http://cdimage.debian.org/cdimage/weekly-builds/i386/iso-cd/}
+\item \textsf{Debian Testing 32bit DVD images:} \newline
+\url{http://cdimage.debian.org/cdimage/weekly-builds/i386/iso-dvd/}
 \end{list}
 
 
@@ -134,12 +137,12 @@ You have a couple of options here, you can either go the route of Method \#1: (d
 \url{http://unetbootin.sourceforge.net/unetbootin-windows-latest.exe}\newline
 \textsf{Run the unetbootin-windows-latest.exe file while the computer is running from its Windows partition and follow the instructions at:} \newline
 \url{http://unetbootin.sourceforge.net/#install} \newline
-\textsf{to create a bootable Debian 32bit or Debian 64bit USB Thumb drive.}
+\textsf{to create a bootable Debian 32bit USB Thumb drive.}
 \end{enumerate}
 
 \chapter{\textsf{Install Linux}}
 
-\textsf{Insert the boot media you created in Chapter 2 to install Debian 6 (Squeeze) on the remaining ~500 Gb HDD space.  Now reboot your computer making sure to choose the boot media you just created.} \newline
+\textsf{Insert the boot media you created in Chapter 2 to install Debian Testing (Wheezy) on the remaining ~500 Gb HDD space.  Now reboot your computer making sure to choose the boot media you just created.} \newline
 
 \begin{enumerate}
 \item \textsf{To reduce reduce the number of steps, this example begins at the step where disk detection starts after you have gone through the basic steps of the graphical installer. 
@@ -149,7 +152,7 @@ Select “Manual.”  Click Continue.}
 
 \item \textsf{Scroll to “Create a new partition.” Continue.} 
 
-\item \textsf{By default the /boot partition on Debian 6 is allocated a disk space of about 250 MB. Most Linux distributions use 500 MB. I think 1000 MB will do just fine for my system. Continue.}
+\item \textsf{By default the /boot partition on Debian Testing is allocated a disk space of about 250 MB. Most Linux distributions use 500 MB. I think 1000 MB will do just fine for my system. Continue.}
 
 \item \textsf{If you are installing Debian to dual boot with Windows XP, you do not need to follow any further steps until step 49 so you can skip to step 49 now.  If you are installing Debian to dual boot with Windows Vista or Windows 7, continue to the next step.}
 
@@ -227,7 +230,7 @@ Select “Manual.”  Click Continue.}
 
 \item \textsf{Continue with the rest of the installation. When completed, the system will reboot into Windows. This is expected.}
  
-\item \textsf{The final task is to add an entry for Debian 6 in Windows’ boot menu. The easiest tool I know of to do that is EasyBCD, a free application from NeoSmart Technologies. You may download the latest version here:} \newline 
+\item \textsf{The final task is to add an entry for Debian Wheezy in Windows’ boot menu. The easiest tool I know of to do that is EasyBCD, a free application from NeoSmart Technologies. You may download the latest version here:} \newline 
       \url{http://neosmart.net/dl.php?id=1} 
       
 \item \textsf{Install EasyBCD and launch it.}
@@ -262,7 +265,7 @@ Select “Manual.”  Click Continue.}
 \chapter{\textsf{Install Linux Libraries and Programs}}
 
 \begin{enumerate}
-\item \textsf{Boot into Debian 6.}
+\item \textsf{Boot into Debian.}
 \item \textsf{Open a Root Terminal, edit \path{/etc/apt/sources.list} and add:} \newline
 	\textsf{For 32bit OS:} \newline
 \texttt{\# FreeEMS Toolchain} \newline
@@ -436,6 +439,12 @@ Select “Manual.”  Click Continue.}
       \texttt{ACTION=="add", SUBSYSTEM=="usb", SYSFS\{idVendor\}=="0925", SYSFS\{idProduct\}=="3881", ENV\{DEVTYPE\}=="usb\_device", GROUP="dialout", MODE="0660", SYMLINK+="saleae-\%k"} \newline
       \texttt{EOF}
 
+\item \textsf{Comment out the rule in /lib/udev/rules.d/95-upower-wup.rules} \newline
+	  \texttt{\$ gedit /lib/udev/rules.d/95-upower-wup.rules} \newline
+      \texttt{Now add a \# to the beginning of the line that reads like the one below:} \newline      
+      \texttt{\# SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS\{idVendor\}=="0403", ATTRS\{idProduct\}=="6001", ATTRS\{serial\}=="A80\?\?\?\?\?", ENV\{UPOWER\_VENDOR\}="Watts Up, Inc.", ENV\{UPOWER\_PRODUCT\}="Watts Up\? Pro", ENV\{UP\_MONITOR\_TYPE\}="wup"} \newline
+      \texttt{Save your change} \newline
+
 \item \textsf{Kill and Respawn udev deamon and run the newly created rules:} \newline
       \texttt{\$ sudo skill udevd} \newline
       \texttt{\$ sudo /sbin/udevd -d} \newline
@@ -444,6 +453,8 @@ Select “Manual.”  Click Continue.}
 
 \chapter{\textsf{hcs12mem}}
 \textsf{In this chapter we will download and test hcs12mem a Freescale HCS12 flashing utility.} \newline
+
+\textsf{hcs12mem is only to test to make sure you can communicate with the HCS12 core.  You will not be using this utility for flashing anything to the MCU under Linux.} \newline
 
 \begin{enumerate}
 \item \textsf{Download hcs12mem from:} \newline
@@ -489,13 +500,17 @@ Select “Manual.”  Click Continue.}
 
 \end{enumerate}
 
-\chapter{\textsf{Build a TBDML}}
+\chapter{\textsf{Build a BDM}}
 
-\textsf{I used a TBDML to connect the MCU to the HiWave Debugger, I have included a link to my github repository where you can find the information to make your own as well as the driver for Windows XP 32-bit, Vista 32-bit and Windows 7 32-bit editions.} \newline
+\textsf{I have used a TBDML in the past to connect the MCU to the HiWave Debugger, I have included a link to my github repository where you can find the information to make your own as well as the driver for Windows XP 32-bit, Vista 32-bit and Windows 7 32-bit editions.} \newline
+
+\textsf{I recommend using a USBDM to connect the MCU to the HiWave Debugger, I have included a link to my github repository where you can find the information to make your own as well as the driver for Windows XP 32-bit.} \newline
 
 \begin{enumerate}
+\item \textsf{Clone my USBDM repository from https://github.com/DeuceEFI/USBDM (recommended)}
 \item \textsf{Clone my TBDML-12f-GPL repository from https://github.com/DeuceEFI/TBDML-12f-GPL}
 
+\item \textsf{Follow the instructions contained in the file "USBDM_Instructions.md" to build a USBDM and install the 32-bit driver.}
 \item \textsf{Follow the instructions in Daniel Malík's instructional PDF to build a TBDML and install the included 32-bit driver.}
 \end{enumerate}
 
@@ -507,7 +522,7 @@ Select “Manual.”  Click Continue.}
 
 \item \textsf{Boot into Windows.}
 
-\item \textsf{Connect the TBDML to your computer.}
+\item \textsf{Connect the USBDM/TBDML to your computer.}
 
 \item \textsf{Run the hiwave.exe shortcut you created in Chapter 1, Step 1, Instruction 5.}
 
