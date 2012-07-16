@@ -9,7 +9,7 @@
 \evensidemargin=-0.35in
 \title{\textsf{FreeEMS Workstation HowTo}}
 \author{\textsf{Andy Goss}}
-\date{\textsf{05/20/2012}}
+\date{\textsf{07/16/2012}}
 \begin{document}
 \maketitle
 
@@ -276,7 +276,7 @@ Select “Manual.”  Click Continue.}
       \textsf{and add your user under root.}
 
 \item \textsf{In the same Terminal window, type:} \newline
-      \texttt{sudo gedit /etc/group} /textsf{ and add your username to:} \newline
+      \texttt{sudo gedit /etc/group} \textsf{ and add your username to:} \newline
       \texttt{tty, dialout, sudo, operator, users, iocard and staff} \newline
       \textsf{You may not have all of these, only add your username after the groups that exist on your system.}
 
@@ -305,7 +305,7 @@ Select “Manual.”  Click Continue.}
 \begin{enumerate}
 \item \textsf{Install QT4} \newline
       \textsf{Open a Terminal window and type:} \newline
-      \texttt{\$ sudo apt-get update \&\& sudo apt-get install qt4-qmake libqt4-dev}
+      \texttt{\$ sudo apt-get update \&\& sudo apt-get install libqt4-dev libqt4-opengl-dev qt4-qmake libqwt-dev libqt4-declarative libqjson-dev}
 
 \item \textsf{Now the system should be ready to compile MegaTunix, FreeEMS, FreeEMS-Loader and qserialport!}
 
@@ -322,6 +322,7 @@ Select “Manual.”  Click Continue.}
       \texttt{\$ git clone git://gitorious.org/inbiza-labs/qserialport.git} \newline
       \texttt{\$ git clone git://github.com/seank/freeems-loader.git} \newline
       \texttt{\$ git clone git://github.com/djandruczyk/MegaTunix.git} \newline
+      \texttt{\$ git clone git://github.com/malcom2073/emstudio.git} \newline
       \texttt{\$ git clone git://github.com/fredcooke/freeems-vanilla.git} \newline
       \newline
       \textsf{This creates a directory within the git directory named after each repository such as:} \newline
@@ -396,7 +397,7 @@ Select “Manual.”  Click Continue.}
 \item \textsf{Build the FreeEMS Firmware:} \newline
       \textsf{In the same Terminal window and type:} \newline
       \texttt{\$ cd } \PVerb{~/git/freeems-vanilla/src} \newline
-      \texttt{\$ make s19}
+      \texttt{\$ CLIFLAGS="-D DEUCECOUPE=1" make clean s19}
 
 \item \textsf{Your newly built FreeEMS firmware can be found in:} \newline
       \texttt{\$ cd } \PVerb{~/git/freeems-vanilla/src/firmware}
@@ -581,5 +582,24 @@ Select “Manual.”  Click Continue.}
       \item \textsf{Close FreeEMS-Loader and remember to change the Load/Run switch back to Run on the TA board and press the RESET button or remove the Load/Run shorting jumper on the Jaguar PCB and power cycle the PCB.}
       \end{enumerate}
 \end{enumerate}
+
+\chapter{\textsf{Using git}}
+
+\textsf{In this chapter we will learn how to use git.} \newline
+
+\begin{enumerate}
+\item \textsf{The following is a list of useful git commands:}
+      \begin{enumerate}
+    \item \texttt{\textbf{git clone git://github.com/user\_name/repository\_name.git}} \textsf{ -this clones the repository to your computer}
+    \item \texttt{\textbf{git pull}} \textsf{ -this retrieves the latest commit changes from the remote repository to your computer}
+    \item \texttt{\textbf{git commit -a}} \textsf{ -this allows you edit the commit message before pushing the changes to the repository on the Internet}
+    \item \texttt{\textbf{git push}} \textsf{ -this uploads your changes to the repository on the Internet}
+    \item \texttt{\textbf{git branch}} \textsf{ -this shows the branches in the repository along with indicating the current branch with an \*}  
+    \item \texttt{\textbf{git rev-parse HEAD | cut -c1-10}} \textsf{ -this shows the first 10 digits of the commit hash}  
+	\item \texttt{\textbf{git diff --stat}} \textsf{ -this shows the changes you have made to the repository}
+	\item \texttt{\textbf{git branch}} \textsf{ -this shows the branches in the repository along with indicating the current branch with an \*}
+	\item \texttt{\textbf{git checkout dev}} \textsf{ -this changes the working branch to the \textbf{dev} branch in the repository}
+	\item \texttt{\textbf{git fetch}} \textsf{ -Fetches named heads or tags from one or more other repositories, along
+       with the objects necessary to complete them.}
 
 \end{document}
