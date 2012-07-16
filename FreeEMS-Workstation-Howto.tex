@@ -307,7 +307,7 @@ Select “Manual.”  Click Continue.}
       \textsf{Open a Terminal window and type:} \newline
       \texttt{\$ sudo apt-get update \&\& sudo apt-get install libqt4-dev libqt4-opengl-dev qt4-qmake libqwt-dev libqt4-declarative libqjson-dev}
 
-\item \textsf{Now the system should be ready to compile MegaTunix, FreeEMS, FreeEMS-Loader and qserialport!}
+\item \textsf{Now the system should be ready to compile emstudio, MegaTunix, FreeEMS, FreeEMS-Loader and qserialport!}
 
 \item \textsf{Create a git directory in your home directory:} \newline
       \textsf{In the same Terminal window, type:} \newline
@@ -329,6 +329,7 @@ Select “Manual.”  Click Continue.}
       \PVerb{~/git/qserialport} \newline	
       \PVerb{~/git/freeems-loader} \newline
       \PVerb{~/git/MegaTunix} \newline
+      \PVerb{~/git/emstudio} \newline
       \PVerb{~/git/freeems-vanilla}
 
 \item \textsf{Start with qserialport since we need it for SeanK's freeems-loader to communicate with the serial port:} \newline
@@ -355,6 +356,10 @@ Select “Manual.”  Click Continue.}
       \texttt{\$ cd } \PVerb{~/git/freeems-loader/src} \newline
       \texttt{\$ qmake \&\& make all}
 
+\item \textsf{Next test run freeems-loader:} \newline
+      \textsf{In the same Terminal window, type:} \newline
+      \texttt{\$ ./Freeems-Loader}
+
 \item \textsf{Create a Gnome menu item for FreeEMS-Loader:} \newline
       \textsf{Click on } \texttt{System -> Preferences -> Main Menu} \newline
       \textsf{Click on the "New Menu" button and call the new menu "FreeEMS".}
@@ -365,14 +370,36 @@ Select “Manual.”  Click Continue.}
       \PVerb{~/git/freeems-loader/src/Freeems-Loader} \textsf{, then click OK.}
 \end{enumerate}
 
+\chapter{\textsf{Install emstudio}}
+
+\textsf{emstudio is the tuning program you will use to make changes to your FreeEMS version 0.2.0 based engine management system so here are the instructions on how to install and run this program.} \newline
+
+\begin{enumerate}
+\item \textsf{Make sure your emstudio git clone is up to date by excuting the following:} \newline
+      \textsf{Open a Terminal window and type:} \newline
+      \texttt{\$ cd } \PVerb{~/git/emstudio} \newline
+      \texttt{\$ git pull}
+
+\item \textsf{Now compile emstudio:} \newline
+      \textsf{In the same Terminal window, type:} \newline
+      \texttt{\$ cd } \PVerb{~/git/emstudio} \newline
+      \texttt{\$ qmake} \newline
+      \texttt{\$ make} \newline
+
+\item \textsf{Now run emstudio:} \newline
+      \textsf{In the same Terminal window, type:} \newline
+      \texttt{\$ cd } \PVerb{~/git/emstudio} \newline
+      \texttt{\$ ./emstudio} \newline      
+\end{enumerate}
+
 \chapter{\textsf{Install MegaTunix}}
 
-\textsf{MegaTunix is the tuning program you will use to make changes to your FreeEMS based engine management system so here are the instructions on how to install and run this program.} \newline
+\textsf{MegaTunix is the tuning program you will use to make changes to your FreeEMS version 0.1.0 based engine management system so here are the instructions on how to install this program.} \newline
 
 \begin{enumerate}
 \item \textsf{Make sure your MegaTunix git clone is up to date by excuting the following:} \newline
       \textsf{Open a Terminal window and type:} \newline
-      \texttt{\$ cd } \PVerb{~/git/Megatunix} \newline
+      \texttt{\$ cd } \PVerb{~/git/MegaTunix} \newline
       \texttt{\$ git pull}
 
 \item \textsf{Now compile MegaTunix:} \newline
@@ -386,7 +413,7 @@ Select “Manual.”  Click Continue.}
 
 \chapter{\textsf{FreeEMS Firmware}}
 
-\textsf{In this chapter are the instructions to build the freeems-vanilla firmware.} \newline
+\textsf{In this chapter are the instructions to build the freeems-vanilla firmware with specific instructions for the Deuce Coupe build.} \newline
 
 \begin{enumerate}
 \item \textsf{Make sure your freeems-vanilla git clone is up to date by excuting the following:} \newline
